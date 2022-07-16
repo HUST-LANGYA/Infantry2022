@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<JScopeProject>
+    <FileVersion major="1" minor="1" />
+    <Project>
+        <Configuration>
+            <JLink>
+                <Options Connection="1" IsRTTSession="0" IsRTTWithTimeStamp="1" SamplingPeriod="100" SerialNo="0" JTAG_IRPre="-1" JTAG_DRPre="-1" IP="localhost" TargetDevice="Cortex-M4" TargetInterface="SWD" InterfaceSpeed="4000" />
+            </JLink>
+            <ScriptFile Name="unspecified" />
+            <ElfFile Name="C:\Users\syy\Desktop\rmÇ¶Èí\Robot 4\Standard Robot 4\User\Objects\HUST RM.axf" />
+            <DataFile Name="" />
+            <RawFile Name="" />
+            <Scope>
+                <Options TimeResolutionUs="100000" />
+            </Scope>
+        </Configuration>
+        <Windows>
+            <Graph Show="1" />
+            <Watch Show="1" />
+        </Windows>
+        <SelectedSymbols>
+            <Symbol>
+                <Options Name="SetPoint" Address="0x20000538" Type="double" TypeID="2" Size="8" GraphColorRed="255" GraphColorGreen="215" GraphColorBlue="0" YMinSampled="-211" YMaxSampled="-2147483648" YAvgSampled="-2147483648" Offset="4" ShowInGraph="1" ACCoupling="0" YOffset="530" IsAutoConfig="0" YResolution="50" MaxValue="460" File="..\Task\GimbalTask.c" Scope="0" DrawStyle="0" />
+            </Symbol>
+            <Symbol>
+                <Options Name="Gyro_Pitch_real" Address="0x20000008" Type="float" TypeID="1" Size="4" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="64" YMinSampled="-211" YMaxSampled="-2147483648" YAvgSampled="-2147483648" Offset="12" ShowInGraph="1" ACCoupling="0" YOffset="530" IsAutoConfig="0" YResolution="50" MaxValue="460" File="main.c" Scope="0" DrawStyle="0" />
+            </Symbol>
+            <Symbol>
+                <Options Name="SetPoint" Address="0x200005A8" Type="double" TypeID="2" Size="8" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="0" YMaxSampled="60" YAvgSampled="25" Offset="16" ShowInGraph="0" ACCoupling="0" YOffset="0" IsAutoConfig="0" YResolution="50" MaxValue="270" File="..\Task\GimbalTask.c" Scope="0" DrawStyle="0" />
+            </Symbol>
+            <Symbol>
+                <Options Name="Gyro_Yaw_real" Address="0x20000004" Type="float" TypeID="1" Size="4" GraphColorRed="255" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="0" YMaxSampled="60" YAvgSampled="25" Offset="24" ShowInGraph="0" ACCoupling="0" YOffset="0" IsAutoConfig="0" YResolution="20" MaxValue="270" File="main.c" Scope="0" DrawStyle="0" />
+            </Symbol>
+        </SelectedSymbols>
+    </Project>
+</JScopeProject>
