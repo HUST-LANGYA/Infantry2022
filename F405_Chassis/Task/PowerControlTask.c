@@ -20,6 +20,7 @@ float AD_actual_value;		//电容实际电压
 float temperate,temp3v3;
 float I_Set = 0;
 Pid_Typedef ChargeCtl;
+char Chassis_Run_Flag;
 enum POWERSTATE_Typedef PowerState = BAT;
 enum CHARGESTATE_Typedef ChargeState = ChargeOff;
 
@@ -85,9 +86,9 @@ void ADC_Filter(void)
 	float temp_temperature;
 	temp3v3 = ((SUM_TEMP/30*825)>>10)/1000.0f;
 	temp_temperature = temp3v3;
-	temp_temperature = (1.43-temp_temperature)/0.0043+25;
+	temp_temperature = (1.43F-temp_temperature)/0.0043F+25;
 	temperate = temp_temperature*=100;
-	AD_actual_value = UCAP*7.8;
+	AD_actual_value = UCAP*7.8F;
 }
 
 
@@ -102,8 +103,8 @@ int MaxChargePower = 45000; 		//最大充电功率，最小充电功率
 
 const short MinCharegePower = 5000;
 int ActualPower = 0;
-float MaxBatChargeCurrent = 7.0f;
-float MaxCAPChargeCurrent = 7.0f;
+float MaxChargeCurrent_L = 5.0f;
+float MaxChargeCurrent_H = 7.0f;
 float My_i;
 float ChargeCal()	//由剩余功率计算充电电流
 {
@@ -186,7 +187,7 @@ void Pid_ChargeCal_Init()
 	ChargeCtl.P = 0.5;
 	ChargeCtl.I = 0;
 	ChargeCtl.IMax = 0;
-	ChargeCtl.OutMax = MaxCAPChargeCurrent*1000;
+	ChargeCtl.OutMax = MaxChargeCurrent_H*1000;
 }
 
 /**********************************************************************************************************
@@ -215,13 +216,23 @@ void ChargeControl(void)
 			}
 			I_Set = 0;
 		}
-		
-	I_Set = LIMIT_MAX_MIN(I_Set,MaxBatChargeCurrent,0);  //剩余缓冲能量为20J，即最大不能超过200W，即9A左右，取7A
+		else if(Chassis_Run_Flag)
+		{
+			I_Set = 0;
+		}
+	}
+	
+	
+	if(JudgeReceive.MaxPower > 70)
+	{
+	I_Set = LIMIT_MAX_MIN(I_Set,MaxChargeCurrent_H,0);  //功率较高时设置较大的充电电流快速充满
 	}
 	else
 	{
-	I_Set = LIMIT_MAX_MIN(I_Set,MaxCAPChargeCurrent,0);  //剩余缓冲能量为20J，即最大不能超过200W，即9A左右，取7A
+	I_Set = LIMIT_MAX_MIN(I_Set,MaxChargeCurrent_L,0);  //功率较低时，设置较小的充电电流
 	}
+	
+	
 	Charge_Set(I_Set);
 	/******************放电控制*******************/
 	if(F405.SuperPowerLimit == 0)			//操作手关闭超级电容

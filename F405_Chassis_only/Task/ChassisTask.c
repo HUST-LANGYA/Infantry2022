@@ -359,7 +359,8 @@ char test_cnt[4];
 #define  SetUP_T  0.99f
  void Filter_Cal(void)
 {
-
+#if Mecanum == 1
+	
   LowPass_SetChassis(&pidChassisWheelSpeed[0].SetPoint,-k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
 	LowPass_SetChassis(&pidChassisWheelSpeed[1].SetPoint,-k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
 	LowPass_SetChassis(&pidChassisWheelSpeed[2].SetPoint,-k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
@@ -394,6 +395,43 @@ char test_cnt[4];
 		if(ABS(k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[3].SetPoint))
 		ChassisSetUp[3]=1;
 		else 	ChassisSetUp[3]=0;
+		
+#else
+	LowPass_SetChassis(&pidChassisWheelSpeed[0].SetPoint,-k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
+	LowPass_SetChassis(&pidChassisWheelSpeed[1].SetPoint,-k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
+	LowPass_SetChassis(&pidChassisWheelSpeed[2].SetPoint,-k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
+	LowPass_SetChassis(&pidChassisWheelSpeed[3].SetPoint,-k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
+	
+//	for(int t=0;t<4;t++)  //用于标志轮子速度变化方向
+//	{
+//	  if(ABS(pidChassisWheelSpeed[t].SetPoint) +100 < ABS(pidChassisWheelSpeed[t].SetPointLast)) //避免静止误差
+//		{
+//		 WheelStopFlag[t] = 1;
+//		 test_cnt[t]++;
+//		}
+//		else
+//		{
+//		 WheelStopFlag[t] = 0;
+//		}
+//	}
+//	
+	//  标志车子已经起步了
+		if(ABS(k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[0].SetPoint))
+		ChassisSetUp[0]=1;
+		else 	ChassisSetUp[0]=0;
+		
+		if(ABS(k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[1].SetPoint))
+		ChassisSetUp[1]=1;
+		else 	ChassisSetUp[1]=0;
+		
+		if(ABS(k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[2].SetPoint))
+		ChassisSetUp[2]=1;
+		else 	ChassisSetUp[2]=0;
+		
+		if(ABS(k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[3].SetPoint))
+		ChassisSetUp[3]=1;
+		else 	ChassisSetUp[3]=0;
+#endif
 
 }
 

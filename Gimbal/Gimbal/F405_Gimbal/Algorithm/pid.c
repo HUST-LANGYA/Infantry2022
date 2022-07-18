@@ -55,7 +55,7 @@ float FeedForward_Calc(FeedForward_Typedef *FF)
 {
 	  FF->Out = FF->Now_DeltIn*FF->K1 + (FF->Now_DeltIn - FF->Last_DeltIn)*FF->K2;
 	  FF->Last_DeltIn = FF->Now_DeltIn;
-    return FF->Out;
+    return LIMIT_MAX_MIN(FF->Out,FF->OutMax,-FF->OutMax);
 }
 
 

@@ -73,6 +73,7 @@ void Can1Receive0(CanRxMsg rx_message0)
 *形    参: rx_message0
 *返 回 值: 无
 **********************************************************************************************************/
+extern char Chassis_Run_Flag;
 void Can2Receive1(CanRxMsg *rx_message)
 {
 	switch(rx_message->StdId)
@@ -82,12 +83,14 @@ void Can2Receive1(CanRxMsg *rx_message)
 			memcpy(&chassis.carSpeedy, &rx_message->Data[2], 2);
 			memcpy(&chassis.carSpeedw, &rx_message->Data[4], 2);
 		
-		if((chassis.Last_carSpeedx - chassis.carSpeedx > 1000) && ABS(chassis.carSpeedy)<100) //前后方向刹车或变向时
+		if((ABS(chassis.carSpeedx) < 100) && ABS(chassis.carSpeedy)<100 && ABS (chassis.carSpeedw)<2000) //前后方向刹车或变向时
 		{
-		   XStopFlag = 1;
+		  Chassis_Run_Flag = 0;
 		}
-		  chassis.Last_carSpeedx = chassis.carSpeedx;
-		  chassis.Last_carSpeedy = chassis.carSpeedy;
+		else
+		{
+		  Chassis_Run_Flag = 1;
+		}
 			Robot_Disconnect.F405Disconnect=0; 
 		break;
 		

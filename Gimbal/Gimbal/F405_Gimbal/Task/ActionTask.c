@@ -205,13 +205,13 @@ void Remote_Process(Remote rc)
 //    SteeringEngine_Set(Infantry.MagOpen);
 //	}
 //	
-//	if(rc.s2==2) //检录模式
-//	{
-//		Status.GimbalMode=Gimbal_Act_Mode; 
-//		Status.ChassisMode=Chassis_Powerdown_Mode;
-//		Status.ShootMode=Shoot_Check_Mode;
-//		SteeringEngine_Set(Infantry.MagClose);
-//	}	
+	if(rc.s2==2) //检录模式
+	{
+		Status.GimbalMode=Gimbal_Test_Mode; 
+		Status.ChassisMode=Chassis_Powerdown_Mode;
+		Status.ShootMode=Shoot_Check_Mode;
+		SteeringEngine_Set(Infantry.MagClose);
+	}	
 	if(rc.s2==1) //辅瞄模式
 	{
 		Status.GimbalMode=Gimbal_Armor_Mode; 
@@ -233,21 +233,21 @@ void Remote_Process(Remote rc)
 //		Status.ChassisMode=Chassis_SelfProtect_Mode;
 //		Status.ShootMode=Shoot_Tx2_Mode;
 //    SteeringEngine_Set(Infantry.MagOpen);
-//	}
+////	}
 
-	if(rc.s2 == 2)//大符模式
-	{
-		if(Buff_Init==0)
-		{
-		Buff_Yaw_Motor =Gimbal.Yaw.MotorTransAngle;
-		Buff_Init=1;
-		}
-		Status.GimbalMode = Gimbal_BigBuf_Mode;
-    SteeringEngine_Set(Infantry.MagOpen);	
-		Status.ChassisMode = Chassis_Act_Mode;
-		Status.ShootMode = Shoot_Tx2_Mode;
-	}
- 
+//	if(rc.s2 == 2)//大符模式
+//	{
+//		if(Buff_Init==0)
+//		{
+//		Buff_Yaw_Motor =Gimbal.Yaw.MotorTransAngle;
+//		Buff_Init=1;
+//		}
+//		Status.GimbalMode = Gimbal_BigBuf_Mode;
+//    SteeringEngine_Set(Infantry.MagOpen);	
+//		Status.ChassisMode = Chassis_Act_Mode;
+//		Status.ShootMode = Shoot_Tx2_Mode;
+//	}
+// 
 //	
 //		if(rc.s2 == 1)//小符模式
 //	{
@@ -260,11 +260,6 @@ void Remote_Process(Remote rc)
 //    SteeringEngine_Set(Infantry.MagClose);	
 //		Status.ChassisMode = Chassis_Act_Mode;
 //		Status.ShootMode = Shoot_Tx2_Mode;
-//		smallBuff_flag = 1;
-//	}
-//  else 
-//	{
-//		smallBuff_flag = 0;
 //	}
 //	
 	
@@ -290,19 +285,19 @@ void Remote_Process(Remote rc)
 *函 数 名: MouseKey_Act_Cal
 *功能说明: 键鼠模式
            w,s,a,d          前进左右后退
-           q								辅瞄自行打弹
+           q								辅瞄，自己打弹（按住）
 					 e             		切换优先级
            r                开关弹舱   Pitch压低
            f                飞坡模式
-					 g								拨盘反转一格
+					 g								拨盘反转一格（按一下）
 					 z								大符
            x                小符           
            c                高低射频切换
-           v                缓慢移动
+           v                缓慢移动（按住）
 					 b								图形初始化
-           shift            使用超级电容
-           ctrl             小陀螺
-           mouse.press_r    长按辅瞄，操作手打弹
+           shift            使用超级电容（按住）
+           ctrl             小陀螺(按住)
+           mouse.press_r    （按住）辅瞄，操作手自己打弹
            mouse.press_l    单击点射(单发)/长按连发
 					 鼠标滚轮         辅瞄微调
 
@@ -446,23 +441,40 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 	}
 
 /****************************** 辅瞄自行打弹模式 q键*****************************************/
-			q_rising_flag=RC_Ctl.key.q-pre_key_q;
-			pre_key_q = RC_Ctl.key.q;
-			if(q_rising_flag == 1)
-			{				
-				if(!q_flag)
-				{
+	 
+	 if(Status.ShootMode != Shoot_Powerdown_Mode)
+	 {
+    	if(RC_Ctl.key.q == 1 && Status.GimbalMode == Gimbal_Act_Mode && Status.ShootMode == Shoot_Fire_Mode)
+			{
 				Status.GimbalMode = Gimbal_Armor_Mode;
-				Status.ShootMode = Shoot_Tx2_Mode;
-				q_flag = 1;
-				}
-				else
-				{
+				Status.ShootMode = Shoot_Tx2_Mode;	
+	      q_flag = 1;				
+			}
+			else if(Status.GimbalMode == Gimbal_Armor_Mode && Status.ShootMode == Shoot_Tx2_Mode)
+			{
 				Status.GimbalMode = Gimbal_Act_Mode;
-				Status.ShootMode = Shoot_Fire_Mode;
-				q_flag = 0;
-				}
-			}		
+				Status.ShootMode = Shoot_Fire_Mode;	
+        q_flag = 0;				
+			}
+	}
+//			pre_key_q = RC_Ctl.key.q;
+//			if(q_rising_flag == 1)
+//			{				
+//				if(!q_flag)
+//				{
+//				Status.GimbalMode = Gimbal_Armor_Mode;
+//				Status.ShootMode = Shoot_Tx2_Mode;
+//				q_flag = 1;
+//				}
+//				else
+//				{
+//				Status.GimbalMode = Gimbal_Act_Mode;
+//				Status.ShootMode = Shoot_Fire_Mode;
+//				q_flag = 0;
+//				}
+//			}		
+	
+	
 /******************************高低射频切换 c键*****************************************/
 			c_rising_flag=RC_Ctl.key.c-pre_key_c;
 			pre_key_c = RC_Ctl.key.c;
@@ -558,13 +570,11 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 				Buff_Init=1;
 				}
 			  Status.GimbalMode=Gimbal_SmlBuf_Mode;
-				smallBuff_flag = 1;
 			}
 			else
 			{
 				Buff_Init=0;
 				Status.GimbalMode=Gimbal_Act_Mode;
-				smallBuff_flag = 0;
 			}
 		}
 

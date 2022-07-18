@@ -32,7 +32,7 @@ extern TaskHandle_t PowerControlTask_Handler; //хннЯ╬Д╠З
 int main()
 {
   BSP_Init();
-	Robot_ID= 4 ;
+	Robot_ID= 3 ;
 	Robot_Init();
 	
 	startTast();

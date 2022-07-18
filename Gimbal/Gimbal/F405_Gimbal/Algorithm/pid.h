@@ -7,6 +7,7 @@ typedef struct{
 	  float Last_DeltIn;
 	  float Now_DeltIn;
 	  float Out;
+	  float OutMax;
 }FeedForward_Typedef;
 
 /*   PID调参-----ZN方法：

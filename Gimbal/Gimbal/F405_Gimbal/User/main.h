@@ -2,7 +2,7 @@
 #define __MAIN_H
 
 
-#define Robot_ID  4          // 不同机器人用不同的序号
+#define Robot_ID  4         // 不同机器人用不同的序号
 // 13   14  为新自适应麦轮编号    
 //  3    4  为独立悬挂麦轮编号
 

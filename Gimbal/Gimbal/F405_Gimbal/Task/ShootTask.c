@@ -247,13 +247,7 @@ void Shoot_Fire_Cal()
 	
 	if(F105.IsShootAble || HighFreq_flag)
 	{
-//		if(Status.GimbalMode==Gimbal_Armor_Mode)
-//		{
-//			if(armor_state==ARMOR_NO_AIM)
-//			{
-//			goto Stop_Shoot;
-//			}
-//		}
+
 			if(ShootContinue)
 			{
 				PidBodanMotorSpeed.SetPoint=PullerSpeed;
@@ -588,7 +582,7 @@ void Pid_Friction_Init(void)
 
 			Infantry.Low_FrictionSpeed = 4800;    //4850:14.1  …‰∆µ£∫4.5
  			Infantry.Medium_FrictionSpeed = 5650;  //17.4
-			Infantry.High_FrictionSpeed = 17000;
+			Infantry.High_FrictionSpeed = 15000;
 
 #elif  Robot_ID == 14
 /********************************************* 5∫≈≥µ *******************************************************/	
@@ -604,14 +598,14 @@ void Pid_Friction_Init(void)
 			Infantry.High_FrictionSpeed = 16000;
 #endif
 
-  PidFrictionSpeed[0].P=60.0f;
+  PidFrictionSpeed[0].P=20.0f;
 	PidFrictionSpeed[0].I=0.0f;
 	PidFrictionSpeed[0].D=0.0f;
 	PidFrictionSpeed[0].IMax=1500.0f;
 	PidFrictionSpeed[0].SetPoint=0.0f;
 	PidFrictionSpeed[0].OutMax = 9900.0f;
 	
-  PidFrictionSpeed[1].P=60.0f;
+  PidFrictionSpeed[1].P=20.0f;
 	PidFrictionSpeed[1].I=0.0f;
 	PidFrictionSpeed[1].D=0.0f;
 	PidFrictionSpeed[1].IMax=1500.0f;

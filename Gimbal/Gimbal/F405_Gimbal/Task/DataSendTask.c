@@ -274,6 +274,7 @@ void USART6_SendtoPC(void)
 	{
 		SendToPC_Buff[0] = '!';
     Mode_Flag=(Status.GimbalMode==Gimbal_BigBuf_Mode?1:0);
+		smallBuff_flag = (Status.GimbalMode == Gimbal_SmlBuf_Mode?1:0);
 		SendToPC_Buff[1] = (0<<6|smallBuff_flag<<5|switchPriority<<4|Mode_Flag<<3|F105.BulletSpeedLevel<<1|F105.RobotRed)&0XFF; // 1为红色，0为蓝色
 	
 			
@@ -518,8 +519,8 @@ void TX2_task(void *pvParameters)
    LastWakeTime_PC = xTaskGetTickCount();
    USART6_SendtoPC();
 	  IWDG_Feed();
-  // vTaskDelay(1); 
 		vTaskDelayUntil(&LastWakeTime_PC,1);
+		 
 #if INCLUDE_uxTaskGetStackHighWaterMark
         TX2_high_water = uxTaskGetStackHighWaterMark(NULL);
 #endif

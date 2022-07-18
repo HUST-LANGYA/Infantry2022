@@ -16,8 +16,8 @@
 
 #define CAP_MAX_W      7000
 #define Rand_S         0.5f   //周期长短
-#define RandThreshold  0.2f   //直流偏置
-#define RANDA          1.5f   //正弦幅值
+#define RandThreshold  0.4f   //直流偏置
+#define RANDA          1.3f   //正弦幅值
 
 float k_CAP = 2.0f;
 /*----------------------------------内部变量---------------------------*/
@@ -143,7 +143,7 @@ char test_cnt[4];
 #define  SetUP_T  0.99f
  void Filter_Cal(void)
 {
-#if defined Mecanum
+#if Mecanum == 1
   LowPass_SetChassis(&pidChassisWheelSpeed[0].SetPoint,k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
 	LowPass_SetChassis(&pidChassisWheelSpeed[1].SetPoint,k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
 	LowPass_SetChassis(&pidChassisWheelSpeed[2].SetPoint,k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
@@ -166,6 +166,27 @@ char test_cnt[4];
 		ChassisSetUp[3]=1;
 		else 	ChassisSetUp[3]=0;
 #else
+	LowPass_SetChassis(&pidChassisWheelSpeed[0].SetPoint,k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
+	LowPass_SetChassis(&pidChassisWheelSpeed[1].SetPoint,k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
+	LowPass_SetChassis(&pidChassisWheelSpeed[2].SetPoint,k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
+	LowPass_SetChassis(&pidChassisWheelSpeed[3].SetPoint,k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
+	
+	//  标志车子已经起步了
+		if(ABS(k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[0].SetPoint))
+		ChassisSetUp[0]=1;
+		else 	ChassisSetUp[0]=0;
+		
+		if(ABS(k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[1].SetPoint))
+		ChassisSetUp[1]=1;
+		else 	ChassisSetUp[1]=0;
+		
+		if(ABS(k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[2].SetPoint))
+		ChassisSetUp[2]=1;
+		else 	ChassisSetUp[2]=0;
+		
+		if(ABS(k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[3].SetPoint))
+		ChassisSetUp[3]=1;
+		else 	ChassisSetUp[3]=0;	
 
 
 #endif
@@ -288,16 +309,21 @@ void Chassis_Speed_Cal(void)
 				
 				if(PowerState == CAP)
 				{
+				//匀速小陀螺
 					carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw,CAP_MAX_W,-CAP_MAX_W);
+//				//        变速小陀螺(消耗能量过高)
+//				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*CAP_MAX_W;
+//				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
+//					
 				}
 				else 
 				{
 //        匀速小陀螺					
-				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*Self_Protect_Limit, -rotation_lim*Self_Protect_Limit);
+//				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*Self_Protect_Limit, -rotation_lim*Self_Protect_Limit);
 
 //        变速小陀螺
 				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*Self_Protect_Limit;
-//				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
+				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
 	
 				}
 			}

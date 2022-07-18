@@ -305,8 +305,8 @@ void Chassis_Speed_Cal(void)
 				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*Self_Protect_Limit, -rotation_lim*Self_Protect_Limit);
 
 //        ±‰ÀŸ–°Õ”¬›
-//				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*Self_Protect_Limit;
-//				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
+				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*Self_Protect_Limit;
+				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
 	
 				}
 			}

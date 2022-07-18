@@ -11,6 +11,7 @@
  * @版本  	 V2.0
  * @作者     戴军
  * @日期     2022.4
+     前x右y
 **********************************************************************************************************/
 #include "main.h"
 /*----------------------------------内部变量---------------------------*/
@@ -563,7 +564,7 @@ void Pid_ChassisPosition_Init(void)
 	
 		FF_w.K1 = 20000.0f;
 		FF_w.K2 = 0.0f;
-		
+		FF_w.OutMax = 16000.0f;
 		
 //	  SOLO_pidChassisPosition.P = 1.8f;		
 //	  SOLO_pidChassisPosition.I = 0.0f;					
@@ -580,11 +581,12 @@ void Pid_ChassisPosition_Init(void)
 	  pidChassisPosition.OutMax = 16000.0f;
 	  pidChassisPosition.DeadZone=0.0f;
 	
-		FF_w.K1 = 13000.0f;
+		FF_w.K1 = 20000.0f;
 		FF_w.K2 = 0.0f;
+		FF_w.OutMax = 16000.0f;
 		
 #elif Robot_ID == 14
-	/********************************************* 5号车 ***********************************************************/	
+	/********************************************* 14 号车 ***********************************************************/	
 		pidChassisPosition.P = 5.0f;				//  位置环					3号车
 	  pidChassisPosition.I = 0.00f;					
 	  pidChassisPosition.D = 0.0f;				
@@ -594,6 +596,7 @@ void Pid_ChassisPosition_Init(void)
 	
 		FF_w.K1 = 20000.0f;
 		FF_w.K2 = 0.0f;
+		FF_w.OutMax = 16000.0f;
  
 #endif 
 }

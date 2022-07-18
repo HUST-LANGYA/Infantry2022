@@ -17,17 +17,285 @@ Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
 CPU DLL:         SARMCM3.DLL V5.25.2.0
 Dialog DLL:      DCM.DLL V1.17.1.0
-Target DLL:      CMSIS_AGDI.dll V1.29.10.0
+Target DLL:      Segger\JL2CM3.dll V2.99.29.0
 Dialog DLL:      TCM.DLL V1.35.1.0
  
 <h2>Project:</h2>
-D:\Robomaster\Infantry\Infantry_2022\new_Infantry\F405_Chassis\User\HUST RM .uvprojx
+D:\Robomaster\Infantry\Infantry_2022\new_Infantry\Infantry2022\F405_Chassis\User\HUST RM .uvprojx
 Project File Date:  06/21/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\HUST RM.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c: 3 warnings, 0 errors
+compiling algorithmOfCRC.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Algorithm\algorithmOfCRC.c: 3 warnings, 0 errors
+compiling FIR.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Algorithm\FIR.c(45): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      *output=(1-K_Low_setchassis)*(*output)+K_Low_setchassis*In;   
+..\Algorithm\FIR.c(55): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+    past=(1-K_Low_setwheel)*past+K_Low_setwheel*In;
+..\Algorithm\FIR.c(57): warning:  #1-D: last line of file ends without a newline
+  }
+..\Algorithm\FIR.c: 6 warnings, 0 errors
+compiling PowerControlTask.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\PowerControlTask.c: 3 warnings, 0 errors
+compiling DataReceiveTask.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\DataReceiveTask.c: 3 warnings, 0 errors
+compiling pid.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Algorithm\pid.c: 3 warnings, 0 errors
+compiling DataSendTask.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\DataSendTask.c: 3 warnings, 0 errors
+compiling DataScope_DP.C...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Algorithm\DataScope_DP.C(61): warning:  #111-D: statement is unreachable
+  		 case 1:   DataScope_OutPut_Buffer[5]  =  5; return  6; break;   
+..\Algorithm\DataScope_DP.C(62): warning:  #111-D: statement is unreachable
+  		 case 2:   DataScope_OutPut_Buffer[9]  =  9; return 10; break;
+..\Algorithm\DataScope_DP.C(63): warning:  #111-D: statement is unreachable
+  		 case 3:   DataScope_OutPut_Buffer[13] = 13; return 14; break;
+..\Algorithm\DataScope_DP.C(64): warning:  #111-D: statement is unreachable
+  		 case 4:   DataScope_OutPut_Buffer[17] = 17; return 18; break;
+..\Algorithm\DataScope_DP.C(65): warning:  #111-D: statement is unreachable
+  		 case 5:   DataScope_OutPut_Buffer[21] = 21; return 22; break; 
+..\Algorithm\DataScope_DP.C(66): warning:  #111-D: statement is unreachable
+  		 case 6:   DataScope_OutPut_Buffer[25] = 25; return 26; break;
+..\Algorithm\DataScope_DP.C(67): warning:  #111-D: statement is unreachable
+  		 case 7:   DataScope_OutPut_Buffer[29] = 29; return 30; break;
+..\Algorithm\DataScope_DP.C(68): warning:  #111-D: statement is unreachable
+  		 case 8:   DataScope_OutPut_Buffer[33] = 33; return 34; break;
+..\Algorithm\DataScope_DP.C(69): warning:  #111-D: statement is unreachable
+  		 case 9:   DataScope_OutPut_Buffer[37] = 37; return 38; break;
+..\Algorithm\DataScope_DP.C(70): warning:  #111-D: statement is unreachable
+       case 10:  DataScope_OutPut_Buffer[41] = 41; return 42; break;
+..\Algorithm\DataScope_DP.C: 13 warnings, 0 errors
+compiling CharSendTask.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\CharSendTask.c(380): warning:  #177-D: variable "last_Laser"  was declared but never referenced
+  	static char last_Mag,last_Gimbal,last_Chassis,last_Laser,last_Freq,last_Fric,last_PowerState;	//记录上次状态
+..\Task\CharSendTask.c(381): warning:  #177-D: variable "delete_flag"  was declared but never referenced
+  	static int delete_flag;
+..\Task\CharSendTask.c(382): warning:  #177-D: variable "Laser_flag"  was declared but never referenced
+  	char Mag_flag,Gimbal_flag,Chassis_flag,Laser_flag,Freq_state,Fric_flag;
+..\Task\CharSendTask.c: 6 warnings, 0 errors
+compiling ChassisTask.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\ChassisTask.c(206): warning:  #177-D: variable "i"  was declared but never referenced
+  	short i;
+..\Task\ChassisTask.c(252): warning:  #177-D: variable "Angular_Velocity"  was declared but never referenced
+  	static short Angular_Velocity;
+..\Task\ChassisTask.c(397): warning:  #177-D: variable "k_ExcessPower"  was declared but never referenced
+  	static float k_ExcessPower;
+..\Task\ChassisTask.c: 6 warnings, 0 errors
+compiling GraphicsSendTask.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\GraphicsSendTask.c(239): warning:  #177-D: variable "Start_Place_x"  was declared but never referenced
+  	static float Start_Place_x[CAP_GRAPHIC_NUM] = {0.388,0.41,0.432,0.454,0.476,0.498,0.52,0.542,0.564};
+..\Task\GraphicsSendTask.c(240): warning:  #177-D: variable "Start_Place_y"  was declared but never referenced
+    static float Start_Place_y = 0.02;
+..\Task\GraphicsSendTask.c(241): warning:  #177-D: variable "End_Place_x"  was declared but never referenced
+  	static float End_Place_x[CAP_GRAPHIC_NUM] = {0.398,0.42,0.442,0.464,0.486,0.508,0.53,0.552,0.574};
+..\Task\GraphicsSendTask.c(242): warning:  #177-D: variable "End_Place_y"  was declared but never referenced
+  	static float End_Place_y = 0.04;
+..\Task\GraphicsSendTask.c(243): warning:  #177-D: variable "i"  was declared but never referenced
+  	static int i;
+..\Task\GraphicsSendTask.c(244): warning:  #177-D: variable "packed_tick"  was declared but never referenced
+  	int packed_tick = 0;							//装包计数器
+..\Task\GraphicsSendTask.c(601): warning:  #177-D: variable "int_AD_actual_value"  was declared but never referenced
+  	int int_AD_actual_value; 	//取整			
+..\Task\GraphicsSendTask.c(602): warning:  #177-D: variable "vol_num"  was declared but never referenced
+  	char vol_num; 
+..\Task\GraphicsSendTask.c(604): warning:  #177-D: variable "last_vol_num"  was declared but never referenced
+  	static char last_vol_num;
+..\Task\GraphicsSendTask.c(606): warning:  #177-D: variable "last_color_array"  was declared but never referenced
+  	static char last_color_array[CAP_GRAPHIC_NUM];
+..\Task\GraphicsSendTask.c(607): warning:  #177-D: variable "last_Buff_Flag"  was declared but never referenced
+  	static int last_Buff_Flag;
+..\Task\GraphicsSendTask.c(609): warning:  #177-D: variable "cap_vol"  was declared but never referenced
+  	float cap_vol;
+..\Task\GraphicsSendTask.c: 15 warnings, 0 errors
+compiling StartTask.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\StartTask.c: 3 warnings, 0 errors
+compiling can1.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\can1.c: 3 warnings, 0 errors
+compiling JumpCal_Task.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Task\JumpCal_Task.c(56): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	MyBuffering_Energy=MyBuffering_Energy-delt_P*0.1;  //计算缓冲能量
+..\Task\JumpCal_Task.c(61): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	 if(Kr<=0.1)
+..\Task\JumpCal_Task.c(65): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	 else if(Kr<=0.2)
+..\Task\JumpCal_Task.c(86): warning:  #1-D: last line of file ends without a newline
+  }
+..\Task\JumpCal_Task.c: 7 warnings, 0 errors
+compiling can2.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\can2.c: 3 warnings, 0 errors
+compiling tim2.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\tim2.c: 3 warnings, 0 errors
+compiling adc.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\adc.c(58): warning:  #550-D: variable "adc_comm"  was set but never used
+  	ADC_CommonInitTypeDef  adc_comm;
+..\Hardware\adc.c: 4 warnings, 0 errors
+compiling tim4.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\tim4.c: 3 warnings, 0 errors
+compiling i2c.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\i2c.c: 3 warnings, 0 errors
+compiling dac.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\dac.c: 3 warnings, 0 errors
+compiling ina260.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\ina260.c(22): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	INA260_1.Current = LSB_VOLTAGE*Cur;
+..\Hardware\ina260.c(24): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	INA260_2.Current = LSB_CURRENT*Cur;
+..\Hardware\ina260.c(36): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	INA260_1.Voltage = LSB_VOLTAGE*Vol;
+..\Hardware\ina260.c(38): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	INA260_2.Voltage = LSB_VOLTAGE*Vol;
+..\Hardware\ina260.c: 7 warnings, 0 errors
+compiling usart2.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\usart2.c: 3 warnings, 0 errors
+compiling uart4.c...
+..\Task\DataReceiveTask.h(104): warning:  #1295-D: Deprecated declaration JudgeReceive_task - give arg types
+  void JudgeReceive_task();
+..\Task\JumpCal_Task.h(4): warning:  #1295-D: Deprecated declaration JumpCal_task - give arg types
+  void JumpCal_task();
+..\Task\JumpCal_Task.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Hardware\uart4.c(21): warning:  #177-D: variable "dma"  was declared but never referenced
+  	DMA_InitTypeDef   dma;
+..\Hardware\uart4.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=34328 RO-data=3272 RW-data=1248 ZI-data=21472  
+".\Objects\HUST RM.axf" - 0 Error(s), 110 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -50,9 +318,9 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:DSP:Library:1.8.0
-      Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM4lf_math.lib
       Include file:  CMSIS\DSP\Include\arm_math.h
-Build Time Elapsed:  00:00:01
+      Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM4lf_math.lib
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>
