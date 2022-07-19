@@ -382,6 +382,7 @@ void Chassis_Speed_Cal(void)
 *返 回 值: 无
 **********************************************************************************************************/
 #define MaxOutPower  250     //最大输出功率限制
+#define JumpPower    120     //飞坡后功率 120W
 #define   K_P        3.2*1E5   //功率系数
 float test_W_Chassis_t1 = 0,test_W_Chassis_t2 = 0;	//测试估算功率修正
 
@@ -422,6 +423,10 @@ void PowerLimit(void)
 	if(JudgeReceive.remainEnergy <= EnergyMargin)
 	{
 		My_P_max = JudgeReceive.MaxPower*0.8f;
+	}
+	else if(JudgeReceive.remainEnergy > 60)
+	{
+		My_P_max = JumpPower;
 	}
 	else 
 	{
@@ -500,7 +505,7 @@ void PowerLimit(void)
 	}
 	test_W_Chassis_t2 = W_Chassis_t;
 
-	//当前功率不到最大功率0.9,分次提高速度,最多提高10次
+	//当前功率不到最大功率0.9,分次提高速度,最多提高10次(有问题，待完善)
 //	DescendFlag = 0;
 //	while(W_Chassis_t < My_P_max*0.9f && DescendFlag < 10)
 //	{

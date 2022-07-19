@@ -17,7 +17,7 @@ short MyHP_Lose=0;
 void JumpCal_task()
 {
 	TickType_t xLastWakeTime;
-	TickType_t SleepTime=110;   // 10Hz检测一次，阻塞 100 ms
+	TickType_t SleepTime=100;   // 10Hz检测一次，阻塞 100 ms
 	char  Energy_Up_Flag=0;
 	float delt_P=0;
 	float Kr=0;
@@ -80,7 +80,6 @@ void JumpCal_task()
 		MyBuffering_Energy=MAX_BUFFERING_ENERGY;
 		}
 	}
-	//vTaskDelay(1000);
 		vTaskDelayUntil(&xLastWakeTime,SleepTime);
 	}
 }
