@@ -148,8 +148,8 @@ void FuzzyMotorGimbal_Act_Cal(Remote rc,Mouse mouse)
 	}
 	if(Status.ControlMode==Control_MouseKey_Mode)//Mouse_Key
 	{
-    GimbalPitchPos -= mouse.y*0.005f;
-    GimbalYawPos   -= mouse.x*0.0016f;   //0.0016
+    GimbalPitchPos -= mouse.y*0.003f;    //原本：0.005f
+    GimbalYawPos   -= mouse.x*0.002f;   //0.0016
 		GimbalPitchPos += mouse.z*0.002f;
 		
 		FF_w.Now_DeltIn  = -mouse.x*0.0016f;
@@ -422,6 +422,16 @@ void Gimbal_Test_Cal(Remote rc,Mouse mouse)
 	PidYawAidSpeed.SetPoint=PID_Calc(&PidYawAidPos,Gimbal.Yaw.MotorTransAngle); 
 	inttoshort[1] = PID_Calc(&PidYawAidSpeed,GyroReceive.GZ);
 	YawCurrent = inttoshort[1];
+	
+//	PidPitchPos.SetPoint = GimbalPitchPos;
+//	PidPitchSpeed.SetPoint=PID_Calc(&PidPitchPos,Gimbal.Pitch.MotorTransAngle);  	
+//	inttoshort[0]=(PID_Calc(&PidPitchSpeed,GyroReceive.GY));//旧陀螺仪
+//	PitchCurrent=-(short)inttoshort[0];
+//		
+//	PidYawPos.SetPoint = GimbalYawPos;
+//	PidYawSpeed.SetPoint=PID_Calc(&PidYawPos,Gimbal.Yaw.MotorTransAngle); 
+//	inttoshort[1] = PID_Calc(&PidYawSpeed,GyroReceive.GZ);
+//	YawCurrent = inttoshort[1];
 }
 
 /**********************************************************************************************************
@@ -662,7 +672,7 @@ void PidGimbalMotor_Init(void)
 	PidYawPos.SetPoint=0.0f;
 	PidYawPos.OutMax=5.5f;
 	
-	PidYawSpeed.P=22000.0f;   //手动yaw速度环
+	PidYawSpeed.P=15000.0f;   //手动yaw速度环
 	PidYawSpeed.I=1.0f;
 	PidYawSpeed.D=0.0f;
 	PidYawSpeed.IMax=2000.0f;
@@ -714,13 +724,13 @@ void PidGimbalMotor_Init(void)
 	
 	//大符 Pitch
 	FuzzyBuffPidPitchPos.Kp=0.28f;
-	FuzzyBuffPidPitchPos.Ki=0.000f;  //模糊PID位置环（辅瞄）
+	FuzzyBuffPidPitchPos.Ki=0.003f;  //模糊PID位置环（辅瞄）
 	FuzzyBuffPidPitchPos.Kd=0.0f;
 	FuzzyBuffPidPitchPos.IMax=40.0f;
 	FuzzyBuffPidPitchPos.SetPoint=0.0f;
 	
   PidPitchBuffSpeed.P=10000.0f;	  //速度环PID（辅瞄）
-	PidPitchBuffSpeed.I=20.0f; 
+	PidPitchBuffSpeed.I=15.0f; 
 	PidPitchBuffSpeed.D=0.0f;
 	PidPitchBuffSpeed.IMax=250.0f;
 	PidPitchBuffSpeed.SetPoint=0.0f;

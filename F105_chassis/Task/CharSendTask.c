@@ -52,7 +52,7 @@ void referee_data_load_String(int Op_type)
 	static char Gimbal_State[9][9] = {"OFF","Normal","Armor","BigBuf","Drop","SI","Jump","AutoShot","SmalBuf"};
 	static char Chassis_State[5][9] = {"OFF","Normal","SelfPro","SOLO","JUMP"};
 	static char Power_State[2][4] = {"Bat","Cap"};
-	static char Freq_State[2][7] = {"High","Normal"};
+	static char Freq_State[2][7] = {"Normal","High"};
 	static char Friction[2][9]={"Firc off","Fric on"};
 	/*初始化操作，轮流生成图层*/
 	if(Op_type == Op_Init)

@@ -7,7 +7,7 @@
 **********************************************************************************************************/
 #include "main.h"
 /*--------------------------内部变量----------------------------*/
-int Bodan_Pos;
+float Bodan_Pos;
 /*--------------------------结构体----------------------------*/
 Gimbal_Typedef Gimbal;
 ZeroCheck_Typedef ZeroCheck_Pitch,ZeroCheck_Yaw,ZeroCheck_Pitch_speed,ZeroCheck_Yaw_speed; 

@@ -114,7 +114,7 @@ void Infantry_Init(void)
 	Infantry.pitch_min_motor = -13;
 	Infantry.pitch_max_gyro = 31;
 	Infantry.pitch_min_gyro = -13;
-  Infantry.pn=-1;
+  Infantry.pn= 1;
 	
 #elif Robot_ID == 4	
 /***************************************** 4 号车 **************************************************************/	
@@ -132,7 +132,7 @@ void Infantry_Init(void)
 	Infantry.pitch_min_motor = -14;
 	Infantry.pitch_max_gyro = 28;
 	Infantry.pitch_min_gyro = -13;
-	Infantry.pn=-1;                  //给送入的陀螺仪pitch施加系数使其方向正确
+	Infantry.pn=1;                  //给送入的陀螺仪pitch施加系数使其方向正确
 
 #elif Robot_ID == 14
 /***************************************** 14 号车 **************************************************************/	

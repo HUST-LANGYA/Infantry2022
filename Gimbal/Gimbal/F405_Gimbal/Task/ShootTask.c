@@ -26,7 +26,7 @@ FuzzyPID FuzzyBodanMotorPos;
 float Onegrid; 
 /*----------------------------------外部变量---------------------------*/
 extern RC_Ctl_t RC_Ctl;
-extern int Bodan_Pos;
+extern float Bodan_Pos;
 extern F105_Typedef F105;//F105
 extern F405_typedef F405;
 extern Status_t Status;
@@ -366,8 +366,12 @@ void Shoot_Powerdown_Cal(void)
 {
 	if(ShootAct_Init_Flag!=4)
 	  ShootAct_Init_Flag=4;
+	
 	PidBodanMotorPos.SetPoint=Bodan_Pos;
 	PidBodanMotorSpeed.SetPoint=PID_Calc(&PidBodanMotorPos,Bodan_Pos);
+	ReverseRotation = 0;
+	Reverse_Flag = 0;
+	ShootContinue = 0;
 }
 
 ///**********************************************************************************************************

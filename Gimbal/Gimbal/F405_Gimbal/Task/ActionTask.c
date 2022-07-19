@@ -28,6 +28,8 @@ short Turning_flag;	//小陀螺标志
 char Graphic_Init_flag;	//图形初始化标志
 char Budan,Buff_flag;
 short PC_Sendflag;
+float Buff_Yaw_Motor;
+char Buff_Init;
 //弹仓盖舵机 持续时间
 short SteeringEngineDelay = 0;
 /*---------------结构体--------------------*/
@@ -40,7 +42,7 @@ extern RobotInit_Struct Infantry;
 extern F105_Typedef F105;
 extern F405_typedef F405;
 extern PC_Receive_t PC_Receive;
-extern int Bodan_Pos;
+extern float Bodan_Pos;
 extern Gimbal_Typedef Gimbal;
 extern float MirocPosition;//控制拨盘旋转
 extern short FrictionWheel_speed;
@@ -129,6 +131,11 @@ void Powerdown_Process()
 	{
 		Mouse_Key_Flag=1;
 		Budan = 1;
+		q_flag = 0;
+		f_flag = 0;
+	 	F405.SuperPowerLimit = 0;			
+		HighFreq_flag = 0;
+		Buff_Init =0;
 	}
 	Status.ChassisMode = Chassis_Powerdown_Mode;
 	Status.GimbalMode  = Gimbal_Powerdown_Mode;
@@ -162,8 +169,6 @@ void Powerdown_Process()
 *返 回 值: 无
 **********************************************************************************************************/
 
-float Buff_Yaw_Motor;
-char Buff_Init;
 void Remote_Process(Remote rc)
 {
 	if(Mouse_Key_Flag!=2)
@@ -418,7 +423,6 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
    pre_key_r=RC_Ctl.key.r;
 	 if(r_rising_flag==1)			//按键按下时
 	 {
-//		 SteeringEngine_Configuration();
 		 if(magazineState == 0x00) 
 		 {
 			 Budan = 1;
@@ -450,29 +454,13 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 				Status.ShootMode = Shoot_Tx2_Mode;	
 	      q_flag = 1;				
 			}
-			else if(Status.GimbalMode == Gimbal_Armor_Mode && Status.ShootMode == Shoot_Tx2_Mode)
+			else if(RC_Ctl.key.q == 0 && Status.GimbalMode == Gimbal_Armor_Mode && Status.ShootMode == Shoot_Tx2_Mode)
 			{
 				Status.GimbalMode = Gimbal_Act_Mode;
 				Status.ShootMode = Shoot_Fire_Mode;	
         q_flag = 0;				
 			}
 	}
-//			pre_key_q = RC_Ctl.key.q;
-//			if(q_rising_flag == 1)
-//			{				
-//				if(!q_flag)
-//				{
-//				Status.GimbalMode = Gimbal_Armor_Mode;
-//				Status.ShootMode = Shoot_Tx2_Mode;
-//				q_flag = 1;
-//				}
-//				else
-//				{
-//				Status.GimbalMode = Gimbal_Act_Mode;
-//				Status.ShootMode = Shoot_Fire_Mode;
-//				q_flag = 0;
-//				}
-//			}		
 	
 	
 /******************************高低射频切换 c键*****************************************/
@@ -518,13 +506,12 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 			pre_key_z = RC_Ctl.key.z;
 			if(z_rising_flag == 1)
 		{
-			Buff_flag ++ ;
-			if(Buff_flag % 2 == 0 && Status.GimbalMode == Gimbal_BigBuf_Mode)			//
+			if(Status.GimbalMode == Gimbal_BigBuf_Mode)			//
 		  {
 				Status.GimbalMode = Gimbal_Act_Mode;
 			  Buff_Init=0;
 			}
-				else if(Buff_flag % 2 == 1  && Status.GimbalMode == Gimbal_Act_Mode)
+				else
 			{
 					if(Buff_Init==0)
 				{
@@ -534,35 +521,13 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 				Status.GimbalMode = Gimbal_BigBuf_Mode;
 			}
 		}
-		/******************************Big  Buff  打大符 z键*****************************************/
-//		z_rising_flag=RC_Ctl.key.z-pre_key_z;
-//    pre_key_z=RC_Ctl.key.z;
-//		if(z_rising_flag==1)
-//		{
-//			Press_Key_z_Flag++;
-//			Press_Key_x_Flag = 0;
-//			if(Press_Key_z_Flag%2==1)
-//			{ 
-//				MirocPosition = 0;
-//			  Status.GimbalMode=Gimbal_Buff_Mode;
-//		    Status.ChassisMode=Chassis_Powerdown_Mode;
-//		    Status.ShootMode=Shoot_Tx2_Mode;
-//			}
-//			else
-//			{
-//				Status.ShootMode=Shoot_Fire_Mode;
-//				Status.GimbalMode=Gimbal_Act_Mode;
-//  		  Status.ChassisMode=Chassis_Act_Mode;
-//			}
-//		}
-//		
+	
 //		/******************************Small  Buff 打小符 x键*****************************************/
 		x_rising_flag=RC_Ctl.key.x-pre_key_x;
     pre_key_x=RC_Ctl.key.x;
 		if(x_rising_flag==1)
 		{
-			Press_Key_x_Flag++;
-			if(Press_Key_x_Flag%2==1)
+			if( Status.GimbalMode != Gimbal_SmlBuf_Mode )
 			{
 				if(Buff_Init==0)
 				{
@@ -583,7 +548,7 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 		pre_mouse_l=RC_Ctl.mouse.press_l;
 		if(Status.ShootMode==Shoot_Fire_Mode)
 	{
-		if(RC_Ctl.mouse.press_l==1)
+		if(RC_Ctl.mouse.press_l==1&&ReverseRotation==0)
 		{
 			 waitFlag[5]++;  
 			 if((waitFlag[5]<20)&&(waitFlag[5]>0))//短按     //延时可以调一调
@@ -624,8 +589,6 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 		if(RC_Ctl.mouse.press_r==1 && (Status.GimbalMode != Gimbal_BigBuf_Mode&&Status.GimbalMode != Gimbal_SmlBuf_Mode)) 
 		{
 		  Status.GimbalMode=Gimbal_Armor_Mode;
-			Status.ShootMode = Shoot_Fire_Mode;
-			Laser_Off();
 		}
 		else if( q_flag==0 && Status.GimbalMode==Gimbal_Armor_Mode) 
 		{

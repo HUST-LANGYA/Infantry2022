@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\HUST-RM-Master.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\HUST-RM-Master.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Jul 17 22:14:27 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jul 19 10:14:12 2022
 <BR><P>
 <H3>Maximum Stack Usage =        392 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -392,7 +392,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[112]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOFA_Send
+<BR><BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOFA_Send
 </UL>
 
 <P><STRONG><a name="[145]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
@@ -1003,7 +1003,7 @@ Global Symbols
 
 <P><STRONG><a name="[bc]"></a>DMA_Cmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f4xx_dma.o(i.DMA_Cmd))
 <BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOFA_USART_Configuration
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOFA_Send
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOFA_Send
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_Configuration
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Configuration
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART6_SendtoPC
@@ -1051,7 +1051,7 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
 </UL>
-<P><STRONG><a name="[e6]"></a>F105_Rst</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, datareceivetask.o(i.F105_Rst))
+<P><STRONG><a name="[e5]"></a>F105_Rst</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, datareceivetask.o(i.F105_Rst))
 <BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Offline_Check_task
 </UL>
 
@@ -1073,11 +1073,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
+<BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_task
 </UL>
 
-<P><STRONG><a name="[f9]"></a>FrictionSpeedChoose</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, shoottask.o(i.FrictionSpeedChoose))
+<P><STRONG><a name="[f8]"></a>FrictionSpeedChoose</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, shoottask.o(i.FrictionSpeedChoose))
 <BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_task
 </UL>
 
@@ -1141,8 +1141,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[d5]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MouseKey_Act_Cal
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Powerdown_Cal
+<BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Powerdown_Cal
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART6_SendtoPC
 </UL>
 
@@ -1154,7 +1153,7 @@ Global Symbols
 <P><STRONG><a name="[83]"></a>Get_CRC8_Check_Sum</STRONG> (Thumb, 30 bytes, Stack size 12 bytes, algorithmofcrc.o(i.Get_CRC8_Check_Sum))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Get_CRC8_Check_Sum
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Verify_CRC8_Check_Sum
+<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Verify_CRC8_Check_Sum
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Append_CRC8_Check_Sum
 </UL>
 
@@ -1289,8 +1288,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Config
 </UL>
 
-<P><STRONG><a name="[ef]"></a>Infantry_Init</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, main.o(i.Infantry_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
+<P><STRONG><a name="[ee]"></a>Infantry_Init</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, main.o(i.Infantry_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
 <P><STRONG><a name="[4]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.MemManage_Handler))
@@ -1314,15 +1313,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> start_task.o(i.start_task)
 </UL>
-<P><STRONG><a name="[e1]"></a>MouseKey_Act_Cal</STRONG> (Thumb, 1492 bytes, Stack size 24 bytes, actiontask.o(i.MouseKey_Act_Cal))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = MouseKey_Act_Cal
-</UL>
-<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<P><STRONG><a name="[fb]"></a>MouseKey_Act_Cal</STRONG> (Thumb, 1394 bytes, Stack size 16 bytes, actiontask.o(i.MouseKey_Act_Cal))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MouseKey_Act_Cal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Status_Act
 </UL>
 
-<P><STRONG><a name="[e2]"></a>Mouse_Key_Process</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, actiontask.o(i.Mouse_Key_Process))
+<P><STRONG><a name="[e1]"></a>Mouse_Key_Process</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, actiontask.o(i.Mouse_Key_Process))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Mouse_Key_Process &rArr; SteeringEngine_Set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteeringEngine_Set
@@ -1348,25 +1345,25 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Offline_Check_task &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOFA_Send
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RC_Rst
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOFA_Send
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RC_Rst
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Feed
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;F105_Rst
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;F105_Rst
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> start_task.o(i.start_task)
 </UL>
-<P><STRONG><a name="[ea]"></a>PCReceive</STRONG> (Thumb, 284 bytes, Stack size 0 bytes, datareceivetask.o(i.PCReceive))
+<P><STRONG><a name="[e9]"></a>PCReceive</STRONG> (Thumb, 284 bytes, Stack size 0 bytes, datareceivetask.o(i.PCReceive))
 <BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PCReceive_task
 </UL>
 
 <P><STRONG><a name="[69]"></a>PCReceive_task</STRONG> (Thumb, 166 bytes, Stack size 0 bytes, datareceivetask.o(i.PCReceive_task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = PCReceive_task &rArr; ulTaskNotifyTake &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PCReceive
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Verify_CRC8_Check_Sum
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PCReceive
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Verify_CRC8_Check_Sum
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> start_task.o(i.start_task)
 </UL>
@@ -1388,27 +1385,27 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrictionWheel_Set
 </UL>
 
-<P><STRONG><a name="[f1]"></a>PidGimbalMotor_Init</STRONG> (Thumb, 486 bytes, Stack size 0 bytes, gimbaltask.o(i.PidGimbalMotor_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
+<P><STRONG><a name="[f0]"></a>PidGimbalMotor_Init</STRONG> (Thumb, 486 bytes, Stack size 0 bytes, gimbaltask.o(i.PidGimbalMotor_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
-<P><STRONG><a name="[f2]"></a>Pid_BodanMotor_Init</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, shoottask.o(i.Pid_BodanMotor_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
+<P><STRONG><a name="[f1]"></a>Pid_BodanMotor_Init</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, shoottask.o(i.Pid_BodanMotor_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
-<P><STRONG><a name="[f0]"></a>Pid_ChassisPosition_Init</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, chassistask.o(i.Pid_ChassisPosition_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
+<P><STRONG><a name="[ef]"></a>Pid_ChassisPosition_Init</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, chassistask.o(i.Pid_ChassisPosition_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
-<P><STRONG><a name="[f3]"></a>Pid_Friction_Init</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, shoottask.o(i.Pid_Friction_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
+<P><STRONG><a name="[f2]"></a>Pid_Friction_Init</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, shoottask.o(i.Pid_Friction_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
-<P><STRONG><a name="[fa]"></a>Pluck_Speed_Choose</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, shoottask.o(i.Pluck_Speed_Choose))
+<P><STRONG><a name="[f9]"></a>Pluck_Speed_Choose</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, shoottask.o(i.Pluck_Speed_Choose))
 <BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_task
 </UL>
 
-<P><STRONG><a name="[fb]"></a>Powerdown_Process</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, actiontask.o(i.Powerdown_Process))
+<P><STRONG><a name="[fa]"></a>Powerdown_Process</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, actiontask.o(i.Powerdown_Process))
 <BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Status_Act
 </UL>
 
@@ -1448,20 +1445,20 @@ Global Symbols
 <P><STRONG><a name="[68]"></a>RCReceive_task</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, datareceivetask.o(i.RCReceive_task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = RCReceive_task &rArr; ulTaskNotifyTake &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteReceive
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteReceive
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> start_task.o(i.start_task)
 </UL>
-<P><STRONG><a name="[e5]"></a>RC_Rst</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, datareceivetask.o(i.RC_Rst))
+<P><STRONG><a name="[e4]"></a>RC_Rst</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, datareceivetask.o(i.RC_Rst))
 <BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Offline_Check_task
 </UL>
 
-<P><STRONG><a name="[eb]"></a>RemoteReceive</STRONG> (Thumb, 452 bytes, Stack size 0 bytes, datareceivetask.o(i.RemoteReceive))
+<P><STRONG><a name="[ea]"></a>RemoteReceive</STRONG> (Thumb, 452 bytes, Stack size 0 bytes, datareceivetask.o(i.RemoteReceive))
 <BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCReceive_task
 </UL>
 
-<P><STRONG><a name="[ec]"></a>Remote_Process</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, actiontask.o(i.Remote_Process))
+<P><STRONG><a name="[eb]"></a>Remote_Process</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, actiontask.o(i.Remote_Process))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Remote_Process &rArr; SteeringEngine_Set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteeringEngine_Set
@@ -1469,20 +1466,20 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Status_Act
 </UL>
 
-<P><STRONG><a name="[ed]"></a>Robot_Init</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, main.o(i.Robot_Init))
+<P><STRONG><a name="[ec]"></a>Robot_Init</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, main.o(i.Robot_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Robot_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ZeroCheck_Init
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid_Friction_Init
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid_ChassisPosition_Init
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid_BodanMotor_Init
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PidGimbalMotor_Init
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Infantry_Init
+<BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ZeroCheck_Init
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid_Friction_Init
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid_ChassisPosition_Init
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid_BodanMotor_Init
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PidGimbalMotor_Init
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Infantry_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f4]"></a>SetInputMode</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, actiontask.o(i.SetInputMode))
+<P><STRONG><a name="[f3]"></a>SetInputMode</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, actiontask.o(i.SetInputMode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SetInputMode &rArr; SteeringEngine_Set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteeringEngine_Set
@@ -1494,7 +1491,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BodanMotor_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[92]"></a>Shoot_Fire_Cal</STRONG> (Thumb, 364 bytes, Stack size 8 bytes, shoottask.o(i.Shoot_Fire_Cal))
+<P><STRONG><a name="[92]"></a>Shoot_Fire_Cal</STRONG> (Thumb, 336 bytes, Stack size 8 bytes, shoottask.o(i.Shoot_Fire_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Shoot_Fire_Cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Calc
@@ -1502,7 +1499,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BodanMotor_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[94]"></a>Shoot_Powerdown_Cal</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, shoottask.o(i.Shoot_Powerdown_Cal))
+<P><STRONG><a name="[94]"></a>Shoot_Powerdown_Cal</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, shoottask.o(i.Shoot_Powerdown_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Shoot_Powerdown_Cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Calc
@@ -1510,28 +1507,28 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BodanMotor_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[e4]"></a>Shoot_Recover</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, start_task.o(i.Shoot_Recover))
+<P><STRONG><a name="[e3]"></a>Shoot_Recover</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, start_task.o(i.Shoot_Recover))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Shoot_Recover &rArr; vTaskResume &rArr; prvTaskIsTaskSuspended
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 </UL>
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Offline_Check_task
 </UL>
 
-<P><STRONG><a name="[e3]"></a>Shoot_Stop</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, start_task.o(i.Shoot_Stop))
+<P><STRONG><a name="[e2]"></a>Shoot_Stop</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, start_task.o(i.Shoot_Stop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Shoot_Stop &rArr; FrictionBodanCan2Send &rArr; CAN_Transmit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrictionBodanCan2Send
 </UL>
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Offline_Check_task
 </UL>
 
-<P><STRONG><a name="[93]"></a>Shoot_Test_Cal</STRONG> (Thumb, 224 bytes, Stack size 8 bytes, shoottask.o(i.Shoot_Test_Cal))
+<P><STRONG><a name="[93]"></a>Shoot_Test_Cal</STRONG> (Thumb, 208 bytes, Stack size 8 bytes, shoottask.o(i.Shoot_Test_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Shoot_Test_Cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
@@ -1544,8 +1541,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = Shoot_task &rArr; vTaskDelayUntil &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Feed
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pluck_Speed_Choose
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrictionSpeedChoose
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pluck_Speed_Choose
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrictionSpeedChoose
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BodanMotor_CurrentPid_Cal
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
@@ -1557,11 +1554,11 @@ Global Symbols
 <P><STRONG><a name="[e0]"></a>Status_Act</STRONG> (Thumb, 164 bytes, Stack size 104 bytes, actiontask.o(i.Status_Act))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Status_Act &rArr; F405Can1Send &rArr; CAN_Transmit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetInputMode
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Remote_Process
-<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerdown_Process
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mouse_Key_Process
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MouseKey_Act_Cal
+<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetInputMode
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Remote_Process
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerdown_Process
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mouse_Key_Process
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MouseKey_Act_Cal
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;F405Can1Send
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
@@ -1592,9 +1589,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetCompare4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetInputMode
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Remote_Process
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mouse_Key_Process
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetInputMode
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Remote_Process
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mouse_Key_Process
 </UL>
 
 <P><STRONG><a name="[a]"></a>SysTick_Handler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.SysTick_Handler))
@@ -1826,7 +1823,7 @@ Global Symbols
 <P><STRONG><a name="[6]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
 </UL>
-<P><STRONG><a name="[e7]"></a>VOFA_Send</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, uart4.o(i.VOFA_Send))
+<P><STRONG><a name="[e6]"></a>VOFA_Send</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, uart4.o(i.VOFA_Send))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = VOFA_Send
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
@@ -1855,7 +1852,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
 </UL>
 
-<P><STRONG><a name="[e9]"></a>Verify_CRC8_Check_Sum</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, algorithmofcrc.o(i.Verify_CRC8_Check_Sum))
+<P><STRONG><a name="[e8]"></a>Verify_CRC8_Check_Sum</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, algorithmofcrc.o(i.Verify_CRC8_Check_Sum))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Verify_CRC8_Check_Sum &rArr; Get_CRC8_Check_Sum
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_CRC8_Check_Sum
@@ -1867,11 +1864,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ZeroCheck_cal
 </UL>
 
-<P><STRONG><a name="[ee]"></a>ZeroCheck_Init</STRONG> (Thumb, 208 bytes, Stack size 0 bytes, zerochecktask.o(i.ZeroCheck_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
+<P><STRONG><a name="[ed]"></a>ZeroCheck_Init</STRONG> (Thumb, 204 bytes, Stack size 0 bytes, zerochecktask.o(i.ZeroCheck_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
-<P><STRONG><a name="[d9]"></a>ZeroCheck_cal</STRONG> (Thumb, 200 bytes, Stack size 4 bytes, zerochecktask.o(i.ZeroCheck_cal))
+<P><STRONG><a name="[d9]"></a>ZeroCheck_cal</STRONG> (Thumb, 196 bytes, Stack size 4 bytes, zerochecktask.o(i.ZeroCheck_cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ZeroCheck_cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ZeroCheck
@@ -2089,7 +2086,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;startTast
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
@@ -2122,16 +2119,16 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> start_task.o(i.startTast)
 </UL>
-<P><STRONG><a name="[e8]"></a>ulTaskNotifyTake</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, tasks.o(i.ulTaskNotifyTake))
+<P><STRONG><a name="[e7]"></a>ulTaskNotifyTake</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, tasks.o(i.ulTaskNotifyTake))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ulTaskNotifyTake &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvAddCurrentTaskToDelayedList
 </UL>
 <BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCReceive_task
@@ -2139,8 +2136,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[124]"></a>uxListRemove</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, list.o(i.uxListRemove))
-<BR><BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
+<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericNotify
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskIncrementTick
@@ -2164,8 +2161,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[125]"></a>vListInsertEnd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, list.o(i.vListInsertEnd))
-<BR><BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
+<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericNotify
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskIncrementTick
@@ -2174,29 +2171,29 @@ Global Symbols
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 </UL>
 
-<P><STRONG><a name="[f5]"></a>vPortEnterCritical</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, port.o(i.vPortEnterCritical))
-<BR><BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
+<P><STRONG><a name="[f4]"></a>vPortEnterCritical</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, port.o(i.vPortEnterCritical))
+<BR><BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_task
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericNotify
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCheckTasksWaitingTermination
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvAddNewTaskToReadyList
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 </UL>
 
-<P><STRONG><a name="[f7]"></a>vPortExitCritical</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, port.o(i.vPortExitCritical))
-<BR><BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
+<P><STRONG><a name="[f6]"></a>vPortExitCritical</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, port.o(i.vPortExitCritical))
+<BR><BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_task
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericNotify
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCheckTasksWaitingTermination
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvAddNewTaskToReadyList
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
@@ -2245,8 +2242,8 @@ Global Symbols
 <P><STRONG><a name="[136]"></a>vTaskDelete</STRONG> (Thumb, 166 bytes, Stack size 16 bytes, tasks.o(i.vTaskDelete))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = vTaskDelete &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvResetNextTaskUnblockTime
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvDeleteTCB
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
@@ -2255,16 +2252,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_task
 </UL>
 
-<P><STRONG><a name="[f6]"></a>vTaskResume</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, tasks.o(i.vTaskResume))
+<P><STRONG><a name="[f5]"></a>vTaskResume</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, tasks.o(i.vTaskResume))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = vTaskResume &rArr; prvTaskIsTaskSuspended
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvTaskIsTaskSuspended
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
+<BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Recover
 </UL>
 
 <P><STRONG><a name="[122]"></a>vTaskStartScheduler</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, tasks.o(i.vTaskStartScheduler))
@@ -2276,17 +2273,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f8]"></a>vTaskSuspend</STRONG> (Thumb, 160 bytes, Stack size 16 bytes, tasks.o(i.vTaskSuspend))
+<P><STRONG><a name="[f7]"></a>vTaskSuspend</STRONG> (Thumb, 160 bytes, Stack size 16 bytes, tasks.o(i.vTaskSuspend))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = vTaskSuspend
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSwitchContext
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvResetNextTaskUnblockTime
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
+<BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_Stop
 </UL>
 
 <P><STRONG><a name="[12a]"></a>vTaskSuspendAll</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, tasks.o(i.vTaskSuspendAll))
@@ -2298,7 +2295,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[6d]"></a>vTaskSwitchContext</STRONG> (Thumb, 128 bytes, Stack size 0 bytes, tasks.o(i.vTaskSwitchContext))
-<BR><BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
+<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
 </UL>
 
@@ -2336,8 +2333,8 @@ Global Symbols
 <P><STRONG><a name="[d8]"></a>xTaskGenericNotify</STRONG> (Thumb, 178 bytes, Stack size 32 bytes, tasks.o(i.xTaskGenericNotify))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = xTaskGenericNotify
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 </UL>
@@ -2369,8 +2366,8 @@ Global Symbols
 <P><STRONG><a name="[12b]"></a>xTaskResumeAll</STRONG> (Thumb, 196 bytes, Stack size 16 bytes, tasks.o(i.xTaskResumeAll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskIncrementTick
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvResetNextTaskUnblockTime
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
@@ -2405,14 +2402,14 @@ Local Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ulTaskNotifyTake
 </UL>
 
 <P><STRONG><a name="[127]"></a>prvAddNewTaskToReadyList</STRONG> (Thumb, 156 bytes, Stack size 8 bytes, tasks.o(i.prvAddNewTaskToReadyList))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = prvAddNewTaskToReadyList &rArr; prvInitialiseTaskLists
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseTaskLists
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 </UL>
@@ -2422,8 +2419,8 @@ Local Symbols
 <P><STRONG><a name="[129]"></a>prvCheckTasksWaitingTermination</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, tasks.o(i.prvCheckTasksWaitingTermination))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = prvCheckTasksWaitingTermination &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvDeleteTCB
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
@@ -2467,7 +2464,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[137]"></a>prvResetNextTaskUnblockTime</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, tasks.o(i.prvResetNextTaskUnblockTime))
-<BR><BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
+<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskIncrementTick
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
@@ -2476,7 +2473,7 @@ Local Symbols
 <P><STRONG><a name="[138]"></a>prvTaskIsTaskSuspended</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, tasks.o(i.prvTaskIsTaskSuspended))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = prvTaskIsTaskSuspended
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
+<BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskResume
 </UL>
 
 <P><STRONG><a name="[133]"></a>prvHeapInit</STRONG> (Thumb, 98 bytes, Stack size 12 bytes, heap_4.o(i.prvHeapInit))
