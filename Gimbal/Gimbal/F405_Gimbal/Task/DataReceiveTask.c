@@ -146,8 +146,8 @@ void Can2Receive1(CanRxMsg rx_message1)
 		 {
 			 memcpy(&GyroReceive.PITCH, rx_message1.Data, 4);
 			 memcpy(&GyroReceive.GY, &rx_message1.Data[4], 4);
-			 GyroReceive.GY*= Infantry.pn;
-			 GyroReceive.PITCH*= Infantry.pn;
+			 GyroReceive.GY*= Infantry.gyro_pn;
+			 GyroReceive.PITCH*= Infantry.gyro_pn;
 		 }
 		 break;
 		 case 0x101:

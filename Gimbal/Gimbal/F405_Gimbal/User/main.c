@@ -114,7 +114,8 @@ void Infantry_Init(void)
 	Infantry.pitch_min_motor = -13;
 	Infantry.pitch_max_gyro = 31;
 	Infantry.pitch_min_gyro = -13;
-  Infantry.pn= 1;
+  Infantry.gyro_pn= 1;
+	Infantry.motor_pn= 1;
 	
 #elif Robot_ID == 4	
 /***************************************** 4 号车 **************************************************************/	
@@ -132,7 +133,8 @@ void Infantry_Init(void)
 	Infantry.pitch_min_motor = -14;
 	Infantry.pitch_max_gyro = 28;
 	Infantry.pitch_min_gyro = -13;
-	Infantry.pn=1;                  //给送入的陀螺仪pitch施加系数使其方向正确
+	Infantry.gyro_pn=1;                  //给送入的陀螺仪pitch施加系数使其方向正确
+  Infantry.motor_pn=1;
 
 #elif Robot_ID == 14
 /***************************************** 14 号车 **************************************************************/	
@@ -150,7 +152,27 @@ void Infantry_Init(void)
 	Infantry.pitch_min_motor = -15;
 	Infantry.pitch_max_gyro = 36;
 	Infantry.pitch_min_gyro = -16;
-	Infantry.pn=1;
+	Infantry.gyro_pn=1;
+	Infantry.motor_pn=1;
+	
+#elif Robot_ID == 5
+/***************************************** 5 号车 **************************************************************/	
+	Infantry.Yaw_init=2050;            // 5号车
+	Infantry.Pitch_init=2013;
+	Infantry.MagOpen=1000;
+	Infantry.MagClose=1900;
+	Infantry.Solo_Yaw_init = 20;
+	Infantry.PitchMotorID = 0x205;
+	Infantry.YawMotorID = 0x207;
+	Infantry.FricMotorID[0]=0x202;
+	Infantry.FricMotorID[1]=0x203;
+	Infantry.BodanMotorID=0x201;
+	Infantry.pitch_max_motor = 35;
+	Infantry.pitch_min_motor = -15;
+	Infantry.pitch_max_gyro = 40;
+	Infantry.pitch_min_gyro = -13;
+	Infantry.gyro_pn=-1;      //  陀螺仪安装正负
+  Infantry.motor_pn=-1;     //  电机安装正负
 
 #endif
 
@@ -235,6 +257,7 @@ void Offline_Check_task(void *pvParameters)
 		/* PC暂断 */
 	if(Robot_Disconnect.PC_DisConnect>10)
 		{
+			
 		}
 	Robot_Disconnect.PC_DisConnect++;
 	VOFA_Send();

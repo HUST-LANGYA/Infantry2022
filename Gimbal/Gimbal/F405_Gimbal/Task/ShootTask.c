@@ -37,7 +37,7 @@ extern short armor_state;
 extern RobotInit_Struct Infantry;
 extern short FrictionReceive[2];
 short PullerSpeed ;        //  1000 冷却1级射频4.5     2000 2级6.5  3000 12.5
-short checkPullerSpeed = 1000;             //  800  4
+short checkPullerSpeed;             //  800  4
 /**********************************************************************************************************
 *函 数 名: PluckSpeedChoose
 *功能说明: 拨盘拨速选择
@@ -306,8 +306,8 @@ void Shoot_Check_Cal()
 	MirocPosition = 0;
 	 if(delay_time>0)
 	 {
-		if(F105.IsShootAble==1)
-		{
+//		if(F105.IsShootAble==1)
+//		{
       if(Shoot_Init_flag == 1)
 			{				
 //				PidBodanMotorPos.SetPoint=PidBodanMotorPos.SetPoint+500; 
@@ -315,7 +315,7 @@ void Shoot_Check_Cal()
 				PidBodanMotorSpeed.SetPoint=checkPullerSpeed;
 				delay_time=0;	
 			}
-		}
+//		}
 		else
 		{
 				PidBodanMotorSpeed.SetPoint=0;	
@@ -559,10 +559,12 @@ void Pid_BodanMotor_Init(void)
 #if(Robot_ID == 3 || Robot_ID == 4||Robot_ID == 14)
 
     Onegrid=38940.0f;		  //老拨盘
+	  checkPullerSpeed = 1000;
 	
 #else
 	
-	  Onegrid=38940.0f;		  //新拨盘
+	  Onegrid=-38940.0f;		  //新拨盘
+		checkPullerSpeed = -1000;
 #endif
 }
 
@@ -589,6 +591,12 @@ void Pid_Friction_Init(void)
 			Infantry.High_FrictionSpeed = 15000;
 
 #elif  Robot_ID == 14
+/********************************************* 14号车 *******************************************************/	
+
+			Infantry.Low_FrictionSpeed = 4850;
+			Infantry.Medium_FrictionSpeed = 5800;
+			Infantry.High_FrictionSpeed = 16000;
+#elif  Robot_ID == 5
 /********************************************* 5号车 *******************************************************/	
 
 			Infantry.Low_FrictionSpeed = 4850;
@@ -602,14 +610,14 @@ void Pid_Friction_Init(void)
 			Infantry.High_FrictionSpeed = 16000;
 #endif
 
-  PidFrictionSpeed[0].P=20.0f;
+  PidFrictionSpeed[0].P=60.0f;
 	PidFrictionSpeed[0].I=0.0f;
 	PidFrictionSpeed[0].D=0.0f;
 	PidFrictionSpeed[0].IMax=1500.0f;
 	PidFrictionSpeed[0].SetPoint=0.0f;
 	PidFrictionSpeed[0].OutMax = 9900.0f;
 	
-  PidFrictionSpeed[1].P=20.0f;
+  PidFrictionSpeed[1].P=60.0f;
 	PidFrictionSpeed[1].I=0.0f;
 	PidFrictionSpeed[1].D=0.0f;
 	PidFrictionSpeed[1].IMax=1500.0f;

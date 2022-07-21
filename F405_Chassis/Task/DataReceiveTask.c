@@ -9,8 +9,6 @@
 unsigned char SaveBuffer[90];
 JudgeReceive_t JudgeReceive;
 extern roboDisconnect Robot_Disconnect;
-//short BAT_StartFlag;
-char XStopFlag,YStopFlag;
 short CAP_CrossoverFlag;
 short CrossoverFlagMax = 10;
 F405_typedef F405;

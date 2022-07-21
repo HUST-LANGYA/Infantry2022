@@ -50,7 +50,7 @@ extern ChassisSpeed_t chassis;
 extern RM820RReceive_Typedef ChassisMotorCanReceive[4];
 extern F405_typedef F405;
 extern enum POWERSTATE_Typedef PowerState;
-
+extern short MyBuffering_Energy;
 extern float output_fil;
 extern float Input[4];
 extern float Output[4];
@@ -391,7 +391,6 @@ short test_Jump[4];
 float	W_Grad[10] = {0.98f,0.98f,0.98f,0.95f,0.95f,0.9f,0.9f,0.9f,0.85f,0.85f};
 short DescendFlag;
 short i;
-extern char XStopFlag;
 float ExcPower;
 float EnergyMargin = 10.0f;		//留有的缓存能量余量
 float My_P_max;				//计算的当前最大功率
@@ -419,21 +418,43 @@ void PowerLimit(void)
 		}
 	}
 	
-//设置最大功率
-	if(JudgeReceive.remainEnergy <= EnergyMargin)
+	
+	
+//	
+////设置最大功率
+//	if(JudgeReceive.remainEnergy <= EnergyMargin)
+//	{
+//		My_P_max = JudgeReceive.MaxPower*0.8f;
+//	}
+//	else if(JudgeReceive.remainEnergy > 60)
+//	{
+//		My_P_max = JumpPower;
+//	}
+//	else 
+//	{
+//		// 裁判系统0.1s检测结算一次
+//		ExcPower = PowerMargin*(JudgeReceive.remainEnergy-EnergyMargin)/(60.0f-EnergyMargin);
+//		My_P_max = LIMIT_MAX_MIN(ExcPower+JudgeReceive.MaxPower, MaxOutPower, JudgeReceive.MaxPower);
+//	}
+	
+	
+//设置最大功率(用于测试250J飞坡增益)
+	if(MyBuffering_Energy <= EnergyMargin)
 	{
 		My_P_max = JudgeReceive.MaxPower*0.8f;
 	}
-	else if(JudgeReceive.remainEnergy > 60)
+	else if(MyBuffering_Energy > 60)
 	{
 		My_P_max = JumpPower;
 	}
 	else 
 	{
 		// 裁判系统0.1s检测结算一次
-		ExcPower = PowerMargin*(JudgeReceive.remainEnergy-EnergyMargin)/(60-EnergyMargin);
+		ExcPower = PowerMargin*(MyBuffering_Energy-EnergyMargin)/(60.0f-EnergyMargin);
 		My_P_max = LIMIT_MAX_MIN(ExcPower+JudgeReceive.MaxPower, MaxOutPower, JudgeReceive.MaxPower);
-	}
+	}	
+	
+	
 	
 //接收电流滤波
 	Current_Filter_Excu();
@@ -736,6 +757,64 @@ void Chassis_Power_Control_Init(void)
 //	Power_method[num].CurrentMax = 16000;
 	/****************120W********************/
 	num++;                                            //14号车
+	Power_method[num].Actual_P_max = 120;
+	Power_method[num].Self_Protect_Limit = 8000;
+	Power_method[num].k_BAT = 2.0f;
+//	Power_method[num].CurrentMax = 16000;
+
+#elif Robot_ID == 5
+///****************************************  5号车   ************************************************************/
+
+	/****************默认参数********************/       //5号车
+	Power_method[num].Actual_P_max = 60;
+	Power_method[num].Self_Protect_Limit = 4000;
+	Power_method[num].k_BAT = 1.2f;
+	
+	/****************40W********************/
+	num++;
+	Power_method[num].Actual_P_max = 40;                 //5号车
+	Power_method[num].Self_Protect_Limit = 3000;
+	Power_method[num].k_BAT = 0.8f;
+
+	/****************45W********************/
+	num++;
+	Power_method[num].Actual_P_max = 45;                //5号车
+	Power_method[num].Self_Protect_Limit = 4000;
+	Power_method[num].k_BAT = 0.9f;
+
+	/****************50W********************/
+	num++;
+	Power_method[num].Actual_P_max = 50;               //5号车
+	Power_method[num].Self_Protect_Limit = 4500;
+	Power_method[num].k_BAT = 1.0f;   //0.6f
+	
+	/****************55W********************/
+	num++;
+	Power_method[num].Actual_P_max = 55;               //5号车
+	Power_method[num].Self_Protect_Limit = 5000;
+	Power_method[num].k_BAT = 1.0f;   //0.6f
+
+
+	/****************60W********************/
+	num++;                                             //5号车
+	Power_method[num].Actual_P_max = 60;                   
+	Power_method[num].Self_Protect_Limit = 5400;  //4300   小陀螺控制转速
+	Power_method[num].k_BAT = 1.0f;   // 0.75f              //xy向速度系数
+//	Power_method[num].CurrentMax = 12000;
+	/****************80W********************/
+	num++;
+	Power_method[num].Actual_P_max = 80;               //5号车
+	Power_method[num].Self_Protect_Limit = 6500;   //5500
+	Power_method[num].k_BAT = 1.5f;   //
+//	Power_method[num].CurrentMax = 14000;
+	/****************100W********************/
+	num++;                                             //5号车
+	Power_method[num].Actual_P_max = 100;
+	Power_method[num].Self_Protect_Limit = 7800;  //7000
+	Power_method[num].k_BAT = 1.8f;
+//	Power_method[num].CurrentMax = 16000;
+	/****************120W********************/
+	num++;                                            //5号车
 	Power_method[num].Actual_P_max = 120;
 	Power_method[num].Self_Protect_Limit = 8000;
 	Power_method[num].k_BAT = 2.0f;

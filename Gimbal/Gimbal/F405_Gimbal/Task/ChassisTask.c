@@ -518,33 +518,7 @@ void Chassis_CurrentPid_Cal(void)
 	ChassisCan1Send(&chassis.carSpeedx,&chassis.carSpeedy,&chassis.carSpeedw);
 }
 
-/**********************************************************************************************************
-*函 数 名: Chassis_Flag_Set
-*功能说明: 模式标志设置
-*形    参: 无
-*返 回 值: 无
-**********************************************************************************************************/
-//void Chassis_Flag_Set(void)
-//{
-//	switch(Status.ChassisMode)
-//	{
-//		case Chassis_Act_Mode:
-//			F405.Chassis_Flag = 0;
-//			break;
-//		case Chassis_SelfProtect_Mode:
-//			F405.Chassis_Flag = 1;
-//			break;
-//		case Chassis_Solo_Mode:
-//			F405.Chassis_Flag = 2;
-//			break;
-//		case Chassis_Powerdown_Mode:
-//			Chassis_beSet_flag = 0;
-//			break;
-//		default:
-//			F405.Chassis_Flag = 0;
-//			break;
-//	}
-//}
+
 /**********************************************************************************************************
 *函 数 名: Pid_ChassisPosition
 *功能说明: 底盘随云台旋转pid参数初始化
@@ -586,6 +560,19 @@ void Pid_ChassisPosition_Init(void)
 		FF_w.OutMax = 16000.0f;
 		
 #elif Robot_ID == 14
+	/********************************************* 14 号车 ***********************************************************/	
+		pidChassisPosition.P = 5.0f;				//  位置环					3号车
+	  pidChassisPosition.I = 0.00f;					
+	  pidChassisPosition.D = 0.0f;				
+	  pidChassisPosition.IMax = 300.0f;
+	  pidChassisPosition.OutMax = 16000.0f;
+	  pidChassisPosition.DeadZone=0.0f;
+	
+		FF_w.K1 = 20000.0f;
+		FF_w.K2 = 0.0f;
+		FF_w.OutMax = 16000.0f;
+		
+#elif Robot_ID == 5
 	/********************************************* 14 号车 ***********************************************************/	
 		pidChassisPosition.P = 5.0f;				//  位置环					3号车
 	  pidChassisPosition.I = 0.00f;					

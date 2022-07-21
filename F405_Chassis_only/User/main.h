@@ -4,7 +4,7 @@
 #define ABS(x) ((x)>0? (x):(-(x))) 
 #define LIMIT_MAX_MIN(x, max, min)	(((x) <= (min)) ? (min):(((x) >= (max)) ? (max) : (x)))  
 
-#define Mecanum 0
+#define Mecanum 1
 
 //Standard Lib
 #include <stm32f4xx.h>	 

@@ -2,7 +2,7 @@
 #define __MAIN_H
 
 
-#define Robot_ID  14         // 不同机器人用不同的序号
+#define Robot_ID  5         // 不同机器人用不同的序号
 // 13   14  为新自适应麦轮编号    
 //  3    4  为独立悬挂麦轮编号
 
@@ -104,7 +104,8 @@
 /*步兵初始参数结构体*/
 typedef struct
 {
-	  int8_t pn;
+	  int8_t gyro_pn;
+	  int8_t motor_pn;
 		unsigned short MagOpen;
 		unsigned short MagClose;
 	  unsigned short Pitch_init;

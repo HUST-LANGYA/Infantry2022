@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\HUST-RM-Master.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\HUST-RM-Master.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jul 19 10:14:12 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Jul 21 13:58:50 2022
 <BR><P>
 <H3>Maximum Stack Usage =        392 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1089,7 +1089,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Shoot_task
 </UL>
 
-<P><STRONG><a name="[c9]"></a>FuzzyGyroGimbal_Act_Cal</STRONG> (Thumb, 602 bytes, Stack size 24 bytes, gimbaltask.o(i.FuzzyGyroGimbal_Act_Cal))
+<P><STRONG><a name="[c9]"></a>FuzzyGyroGimbal_Act_Cal</STRONG> (Thumb, 612 bytes, Stack size 24 bytes, gimbaltask.o(i.FuzzyGyroGimbal_Act_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = FuzzyGyroGimbal_Act_Cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1098,7 +1098,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[cb]"></a>FuzzyMotorGimbal_Act_Cal</STRONG> (Thumb, 632 bytes, Stack size 24 bytes, gimbaltask.o(i.FuzzyMotorGimbal_Act_Cal))
+<P><STRONG><a name="[cb]"></a>FuzzyMotorGimbal_Act_Cal</STRONG> (Thumb, 642 bytes, Stack size 24 bytes, gimbaltask.o(i.FuzzyMotorGimbal_Act_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = FuzzyMotorGimbal_Act_Cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1165,7 +1165,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[cf]"></a>Gimbal_Armor_Cal</STRONG> (Thumb, 650 bytes, Stack size 24 bytes, gimbaltask.o(i.Gimbal_Armor_Cal))
+<P><STRONG><a name="[cf]"></a>Gimbal_Armor_Cal</STRONG> (Thumb, 658 bytes, Stack size 24 bytes, gimbaltask.o(i.Gimbal_Armor_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Gimbal_Armor_Cal &rArr; FuzzyPID_Calc &rArr; fuzzy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FuzzyPID_Calc
@@ -1174,7 +1174,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[d0]"></a>Gimbal_Buff_Cal</STRONG> (Thumb, 544 bytes, Stack size 8 bytes, gimbaltask.o(i.Gimbal_Buff_Cal))
+<P><STRONG><a name="[d0]"></a>Gimbal_Buff_Cal</STRONG> (Thumb, 552 bytes, Stack size 8 bytes, gimbaltask.o(i.Gimbal_Buff_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Gimbal_Buff_Cal &rArr; FuzzyPID_Calc &rArr; fuzzy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FuzzyPID_Calc
@@ -1198,16 +1198,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_task
 </UL>
 
-<P><STRONG><a name="[d2]"></a>Gimbal_Powerdown_Cal</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, gimbaltask.o(i.Gimbal_Powerdown_Cal))
+<P><STRONG><a name="[d2]"></a>Gimbal_Powerdown_Cal</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, gimbaltask.o(i.Gimbal_Powerdown_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Gimbal_Powerdown_Cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Calc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[d3]"></a>Gimbal_SI_Cal</STRONG> (Thumb, 342 bytes, Stack size 16 bytes, gimbaltask.o(i.Gimbal_SI_Cal))
+<P><STRONG><a name="[d3]"></a>Gimbal_SI_Cal</STRONG> (Thumb, 350 bytes, Stack size 16 bytes, gimbaltask.o(i.Gimbal_SI_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = Gimbal_SI_Cal &rArr; T_change &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;T_change
@@ -1217,7 +1216,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_CurrentPid_Cal
 </UL>
 
-<P><STRONG><a name="[d4]"></a>Gimbal_Test_Cal</STRONG> (Thumb, 368 bytes, Stack size 24 bytes, gimbaltask.o(i.Gimbal_Test_Cal))
+<P><STRONG><a name="[d4]"></a>Gimbal_Test_Cal</STRONG> (Thumb, 376 bytes, Stack size 24 bytes, gimbaltask.o(i.Gimbal_Test_Cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Gimbal_Test_Cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Calc
@@ -1288,7 +1287,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Config
 </UL>
 
-<P><STRONG><a name="[ee]"></a>Infantry_Init</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, main.o(i.Infantry_Init))
+<P><STRONG><a name="[ee]"></a>Infantry_Init</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, main.o(i.Infantry_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
@@ -1370,7 +1369,6 @@ Global Symbols
 <P><STRONG><a name="[95]"></a>PID_Calc</STRONG> (Thumb, 366 bytes, Stack size 0 bytes, pid.o(i.PID_Calc))
 <BR><BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Test_Cal
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_SI_Cal
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Powerdown_Cal
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Buff_Cal
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Armor_Cal
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FuzzyMotorGimbal_Act_Cal
@@ -1385,11 +1383,11 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrictionWheel_Set
 </UL>
 
-<P><STRONG><a name="[f0]"></a>PidGimbalMotor_Init</STRONG> (Thumb, 486 bytes, Stack size 0 bytes, gimbaltask.o(i.PidGimbalMotor_Init))
+<P><STRONG><a name="[f0]"></a>PidGimbalMotor_Init</STRONG> (Thumb, 670 bytes, Stack size 0 bytes, gimbaltask.o(i.PidGimbalMotor_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
-<P><STRONG><a name="[f1]"></a>Pid_BodanMotor_Init</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, shoottask.o(i.Pid_BodanMotor_Init))
+<P><STRONG><a name="[f1]"></a>Pid_BodanMotor_Init</STRONG> (Thumb, 128 bytes, Stack size 0 bytes, shoottask.o(i.Pid_BodanMotor_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
@@ -1487,7 +1485,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Status_Act
 </UL>
 
-<P><STRONG><a name="[91]"></a>Shoot_Check_Cal</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, shoottask.o(i.Shoot_Check_Cal))
+<P><STRONG><a name="[91]"></a>Shoot_Check_Cal</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, shoottask.o(i.Shoot_Check_Cal))
 <BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BodanMotor_CurrentPid_Cal
 </UL>
 
@@ -1868,7 +1866,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Robot_Init
 </UL>
 
-<P><STRONG><a name="[d9]"></a>ZeroCheck_cal</STRONG> (Thumb, 196 bytes, Stack size 4 bytes, zerochecktask.o(i.ZeroCheck_cal))
+<P><STRONG><a name="[d9]"></a>ZeroCheck_cal</STRONG> (Thumb, 216 bytes, Stack size 4 bytes, zerochecktask.o(i.ZeroCheck_cal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ZeroCheck_cal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ZeroCheck

@@ -4,9 +4,9 @@
 #define ABS(x) ((x)>0? (x):(-(x))) 
 #define LIMIT_MAX_MIN(x, max, min)	(((x) <= (min)) ? (min):(((x) >= (max)) ? (max) : (x)))  //????
 
-#define Mecanum     1     //1使用麦克纳姆轮   0 使用全向轮
+#define Mecanum     0     //1使用麦克纳姆轮   0 使用全向轮
 
-#define Robot_ID     14    
+#define Robot_ID     5    
 
 
 
