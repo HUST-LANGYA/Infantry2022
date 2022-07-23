@@ -33,6 +33,7 @@ short Actual_P_max;						//实际最大功率
 short Self_Protect_Limit;			//小陀螺转速限制
 float k_BAT;
 char ChassisSetUp[4];
+float sgn = 1.0f;
 
 TickType_t Tickcnt=0;
 
@@ -166,10 +167,10 @@ char test_cnt[4];
 		ChassisSetUp[3]=1;
 		else 	ChassisSetUp[3]=0;
 #else
-	LowPass_SetChassis(&pidChassisWheelSpeed[0].SetPoint,k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
-	LowPass_SetChassis(&pidChassisWheelSpeed[1].SetPoint,k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
-	LowPass_SetChassis(&pidChassisWheelSpeed[2].SetPoint,k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw);
-	LowPass_SetChassis(&pidChassisWheelSpeed[3].SetPoint,k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw);
+	LowPass_SetChassis(&pidChassisWheelSpeed[0].SetPoint,sgn*(-k_xy*(-chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw));
+	LowPass_SetChassis(&pidChassisWheelSpeed[1].SetPoint,sgn*(-k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw));
+	LowPass_SetChassis(&pidChassisWheelSpeed[2].SetPoint,sgn*(-k_xy*(+chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw));
+	LowPass_SetChassis(&pidChassisWheelSpeed[3].SetPoint,sgn*(-k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw));
 	
 	//  标志车子已经起步了
 		if(ABS(k_xy*(+chassis.carSpeedy+(+chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[0].SetPoint))
@@ -186,8 +187,7 @@ char test_cnt[4];
 		
 		if(ABS(k_xy*(-chassis.carSpeedy+(-chassis.carSpeedx))-carSpeedw)*SetUP_T<ABS(pidChassisWheelSpeed[3].SetPoint))
 		ChassisSetUp[3]=1;
-		else 	ChassisSetUp[3]=0;	
-
+		else 	ChassisSetUp[3]=0;
 
 #endif
 
@@ -264,12 +264,12 @@ void Chassis_Speed_Cal(void)
 		case Chassis_Jump_Mode:
 			
 		if((ABS(chassis.carSpeedx)>500) && (ABS(chassis.carSpeedy) >500))
-				k_xy = 2.0f;    //斜着走
+				k_xy = 2.5f;    //斜着走
 			else
-				k_xy = 3;       //直着走
+				k_xy = 3.0f;       //直着走
 			
 		if((ABS(chassis.carSpeedx) <500) && (ABS(chassis.carSpeedy)>500))
-				k_xy =2.5f;     //横着走
+				k_xy =3.0f;     //横着走
 				
 		
 	   carSpeedw = chassis.carSpeedw;
@@ -327,8 +327,9 @@ void Chassis_Speed_Cal(void)
 			
 		{
 //        变速小陀螺
-				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*Self_Protect_Limit;
-				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
+//				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*Self_Protect_Limit;
+//				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
+			carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*Self_Protect_Limit, -rotation_lim*Self_Protect_Limit);
 		}
 				}
 			}
@@ -371,6 +372,16 @@ void Chassis_Speed_Cal(void)
 	}
 	
 //	ABS_Cal();
+#if Mecanum == 0
+	if(F405.Chassis_Flag == Chassis_SelfProtect_Mode)
+	{
+		sgn = -1.0f;
+	}
+	else
+	{
+		sgn = 1.0f;
+	}
+#endif
 	Filter_Cal();
 
 }
@@ -401,6 +412,9 @@ void PowerLimit(void)
   static float PowerMargin  = 150.0f;   //瓦，功率超出量，便于快速起步
 	static float k_ExcessPower;
 	
+#if Robot_ID == 5
+	EnergyMargin = 10.0f;
+#else
 	if(ABS(carSpeedw)>2000)
 	{
 	EnergyMargin = 10.0f;
@@ -412,47 +426,47 @@ void PowerLimit(void)
 		{
 			if(!ChassisSetUp[m])
 			{
-				EnergyMargin = 30.0f;
+				EnergyMargin = 10.0f;
 				break;
 			}
 		}
 	}
+#endif
 	
 	
 	
-//	
-////设置最大功率
-//	if(JudgeReceive.remainEnergy <= EnergyMargin)
-//	{
-//		My_P_max = JudgeReceive.MaxPower*0.8f;
-//	}
-//	else if(JudgeReceive.remainEnergy > 60)
-//	{
-//		My_P_max = JumpPower;
-//	}
-//	else 
-//	{
-//		// 裁判系统0.1s检测结算一次
-//		ExcPower = PowerMargin*(JudgeReceive.remainEnergy-EnergyMargin)/(60.0f-EnergyMargin);
-//		My_P_max = LIMIT_MAX_MIN(ExcPower+JudgeReceive.MaxPower, MaxOutPower, JudgeReceive.MaxPower);
-//	}
-	
-	
-//设置最大功率(用于测试250J飞坡增益)
-	if(MyBuffering_Energy <= EnergyMargin)
+//设置最大功率
+	if(JudgeReceive.remainEnergy <= EnergyMargin)
 	{
 		My_P_max = JudgeReceive.MaxPower*0.8f;
 	}
-	else if(MyBuffering_Energy > 60)
+	else if(JudgeReceive.remainEnergy > 60)
 	{
 		My_P_max = JumpPower;
 	}
 	else 
 	{
 		// 裁判系统0.1s检测结算一次
-		ExcPower = PowerMargin*(MyBuffering_Energy-EnergyMargin)/(60.0f-EnergyMargin);
+		ExcPower = PowerMargin*(JudgeReceive.remainEnergy-EnergyMargin)/(60.0f-EnergyMargin);
 		My_P_max = LIMIT_MAX_MIN(ExcPower+JudgeReceive.MaxPower, MaxOutPower, JudgeReceive.MaxPower);
-	}	
+	}
+	
+	
+//设置最大功率(用于测试250J飞坡增益)
+//	if(MyBuffering_Energy <= EnergyMargin)
+//	{
+//		My_P_max = JudgeReceive.MaxPower*0.8f;
+//	}
+//	else if(MyBuffering_Energy > 60)
+//	{
+//		My_P_max = JumpPower;
+//	}
+//	else 
+//	{
+//		// 裁判系统0.1s检测结算一次
+//		ExcPower = PowerMargin*(MyBuffering_Energy-EnergyMargin)/(60.0f-EnergyMargin);
+//		My_P_max = LIMIT_MAX_MIN(ExcPower+JudgeReceive.MaxPower, MaxOutPower, JudgeReceive.MaxPower);
+//	}	
 	
 	
 	
@@ -779,38 +793,38 @@ void Chassis_Power_Control_Init(void)
 	/****************45W********************/
 	num++;
 	Power_method[num].Actual_P_max = 45;                //5号车
-	Power_method[num].Self_Protect_Limit = 4000;
+	Power_method[num].Self_Protect_Limit = 3800;
 	Power_method[num].k_BAT = 0.9f;
 
 	/****************50W********************/
 	num++;
 	Power_method[num].Actual_P_max = 50;               //5号车
-	Power_method[num].Self_Protect_Limit = 4500;
+	Power_method[num].Self_Protect_Limit = 4000;
 	Power_method[num].k_BAT = 1.0f;   //0.6f
 	
 	/****************55W********************/
 	num++;
 	Power_method[num].Actual_P_max = 55;               //5号车
-	Power_method[num].Self_Protect_Limit = 5000;
+	Power_method[num].Self_Protect_Limit = 4000;
 	Power_method[num].k_BAT = 1.0f;   //0.6f
 
 
 	/****************60W********************/
 	num++;                                             //5号车
 	Power_method[num].Actual_P_max = 60;                   
-	Power_method[num].Self_Protect_Limit = 5400;  //4300   小陀螺控制转速
-	Power_method[num].k_BAT = 1.0f;   // 0.75f              //xy向速度系数
+	Power_method[num].Self_Protect_Limit = 4000;  //4300   小陀螺控制转速
+	Power_method[num].k_BAT = 1.2f;   // 0.75f              //xy向速度系数
 //	Power_method[num].CurrentMax = 12000;
 	/****************80W********************/
 	num++;
 	Power_method[num].Actual_P_max = 80;               //5号车
-	Power_method[num].Self_Protect_Limit = 6500;   //5500
+	Power_method[num].Self_Protect_Limit = 6000;   //5500
 	Power_method[num].k_BAT = 1.5f;   //
 //	Power_method[num].CurrentMax = 14000;
 	/****************100W********************/
 	num++;                                             //5号车
 	Power_method[num].Actual_P_max = 100;
-	Power_method[num].Self_Protect_Limit = 7800;  //7000
+	Power_method[num].Self_Protect_Limit = 7000;  //7000
 	Power_method[num].k_BAT = 1.8f;
 //	Power_method[num].CurrentMax = 16000;
 	/****************120W********************/

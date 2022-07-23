@@ -2,7 +2,7 @@
 .\objects\stm32f4xx_gpio.o: ..\Library\inc\stm32f4xx_gpio.h
 .\objects\stm32f4xx_gpio.o: ..\User\stm32f4xx.h
 .\objects\stm32f4xx_gpio.o: ..\Library\CMSIS\core_cm4.h
-.\objects\stm32f4xx_gpio.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stm32f4xx_gpio.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\stm32f4xx_gpio.o: ..\Library\CMSIS\core_cmInstr.h
 .\objects\stm32f4xx_gpio.o: ..\Library\CMSIS\core_cmFunc.h
 .\objects\stm32f4xx_gpio.o: ..\Library\CMSIS\core_cm4_simd.h

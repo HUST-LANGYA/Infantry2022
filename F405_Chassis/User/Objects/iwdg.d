@@ -3,7 +3,7 @@
 .\objects\iwdg.o: ..\Library\inc\stm32f4xx_iwdg.h
 .\objects\iwdg.o: ..\User\stm32f4xx.h
 .\objects\iwdg.o: ..\Library\CMSIS\core_cm4.h
-.\objects\iwdg.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\iwdg.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\iwdg.o: ..\Library\CMSIS\core_cmInstr.h
 .\objects\iwdg.o: ..\Library\CMSIS\core_cmFunc.h
 .\objects\iwdg.o: ..\Library\CMSIS\core_cm4_simd.h
