@@ -73,7 +73,7 @@ void ZeroCheck_cal(void)
 	Gimbal.Pitch.Motor = ZeroCheck(&ZeroCheck_Pitch,PitchMotorReceive,Position);
 	Gimbal.Pitch.MotorTransAngle = Infantry.motor_pn*(Infantry.Pitch_init-Gimbal.Pitch.Motor)/8192.0f*360.0f;
 	
-	Gimbal.Yaw.Gyro = GyroReceive.YAW;
+	Gimbal.Yaw.Gyro = ZeroCheck(&ZeroCheck_GyroYaw,GyroReceive.YAW,Position);
 	Gimbal.Yaw.Motor = ZeroCheck(&ZeroCheck_Yaw,YawMotorReceive,Position);
 	Gimbal.Yaw.MotorTransAngle = (Gimbal.Yaw.Motor-Infantry.Yaw_init)/8192.0f*360.0f;
 	
@@ -103,6 +103,7 @@ void ZeroCheck_Init(void)
 	ZeroCheck_GyroYaw.Circle=0;
 	ZeroCheck_GyroYaw.CountCycle=360;
 	ZeroCheck_GyroYaw.LastValue=GyroReceive.YAW;
+	
 	ZeroCheck_GyroPitch.Circle=0;
 	ZeroCheck_GyroPitch.CountCycle=360;
 	ZeroCheck_GyroPitch.LastValue=GyroReceive.PITCH;

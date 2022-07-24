@@ -23,7 +23,6 @@ char PitchMotor_ReceiveFlag;
 short FrictionReceive[2];
 float PitchMotorReceive,YawMotorReceive;//Pitch,Yawµç»ú½Ç¶È
 
-KalmanFilter_t pitch_Kalman, yaw_Kalman;
 Disconnect Robot_Disconnect;
 
 extern ZeroCheck_Typedef ZeroCheck_Pitch;

@@ -116,8 +116,8 @@ void VOFA_Send(void)
 	//需转为float型数据存储
 	VOFA_justfloat[0]=(float)(SHOOT_Speed);
 	VOFA_justfloat[1]=(float)(FuzzyAidPidPitchPos.SetPoint);
-	VOFA_justfloat[2]=(float)(FuzzyAidPidYawPos.ActPoint);
-	VOFA_justfloat[3]=(float)(FuzzyAidPidYawPos.SetPoint);
+//	VOFA_justfloat[2]=(float)(FuzzyAidPidYawPos.ActPoint);
+//	VOFA_justfloat[3]=(float)(FuzzyAidPidYawPos.SetPoint);
 //	VOFA_justfloat[4]=(float)(GyroReceive.GX);
 //	VOFA_justfloat[5]=(float)(GyroReceive.ROLL);
 

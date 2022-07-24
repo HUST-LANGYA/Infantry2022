@@ -2,7 +2,7 @@
 .\objects\dac.o: ..\User\main.h
 .\objects\dac.o: ..\User\stm32f4xx.h
 .\objects\dac.o: ..\Library\CMSIS\core_cm4.h
-.\objects\dac.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\dac.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\dac.o: ..\Library\CMSIS\core_cmInstr.h
 .\objects\dac.o: ..\Library\CMSIS\core_cmFunc.h
 .\objects\dac.o: ..\Library\CMSIS\core_cm4_simd.h
@@ -20,12 +20,12 @@
 .\objects\dac.o: ..\Library\inc\misc.h
 .\objects\dac.o: ..\Library\inc\stm32f4xx_can.h
 .\objects\dac.o: ..\Library\inc\stm32f4xx_dac.h
-.\objects\dac.o: D:\Keil\ARM\ARMCC\Bin\..\include\string.h
+.\objects\dac.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\dac.o: ..\Library\CMSIS\arm_math.h
 .\objects\dac.o: ..\Library\CMSIS\core_cm4.h
-.\objects\dac.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h
-.\objects\dac.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\dac.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\dac.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\dac.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\dac.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\dac.o: ..\Hardware\can1.h
 .\objects\dac.o: ..\Hardware\can2.h
 .\objects\dac.o: ..\Hardware\usart2.h
@@ -52,7 +52,7 @@
 .\objects\dac.o: ..\Task\StartTask.h
 .\objects\dac.o: ..\Task\JumpCal_Task.h
 .\objects\dac.o: ..\FreeRTOS\include\FreeRTOS.h
-.\objects\dac.o: D:\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\dac.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\dac.o: ..\User\FreeRTOSConfig.h
 .\objects\dac.o: ..\FreeRTOS\include\projdefs.h
 .\objects\dac.o: ..\FreeRTOS\include\portable.h

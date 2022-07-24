@@ -119,6 +119,11 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name></Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>DLGDARM</Key>
           <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
@@ -430,37 +435,37 @@
         <Ww>
           <count>18</count>
           <WinNumber>2</WinNumber>
-          <ItemText>FuzzyAidPidPitchPos.Kp</ItemText>
+          <ItemText>Gimbal.Yaw.MotorTransAngle</ItemText>
         </Ww>
         <Ww>
           <count>19</count>
           <WinNumber>2</WinNumber>
-          <ItemText>Gimbal.Yaw.MotorTransAngle</ItemText>
+          <ItemText>FF_w.Now_DeltIn</ItemText>
         </Ww>
         <Ww>
           <count>20</count>
           <WinNumber>2</WinNumber>
-          <ItemText>FF_w.Now_DeltIn</ItemText>
+          <ItemText>chassis.carSpeedw</ItemText>
         </Ww>
         <Ww>
           <count>21</count>
           <WinNumber>2</WinNumber>
-          <ItemText>chassis.carSpeedw</ItemText>
+          <ItemText>PidBodanMotorSpeed.SetPoint</ItemText>
         </Ww>
         <Ww>
           <count>22</count>
           <WinNumber>2</WinNumber>
-          <ItemText>PidBodanMotorSpeed.SetPoint</ItemText>
+          <ItemText>MirocPosition</ItemText>
         </Ww>
         <Ww>
           <count>23</count>
           <WinNumber>2</WinNumber>
-          <ItemText>MirocPosition</ItemText>
+          <ItemText>PidPitchSpeed.PreError</ItemText>
         </Ww>
         <Ww>
           <count>24</count>
           <WinNumber>2</WinNumber>
-          <ItemText>FuzzyBuffPidYawPos.ActPoint</ItemText>
+          <ItemText>PidYawSpeed.PreError</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>
@@ -469,7 +474,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>

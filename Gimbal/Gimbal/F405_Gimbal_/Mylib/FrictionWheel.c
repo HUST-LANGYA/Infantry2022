@@ -130,25 +130,27 @@ void FrictionWheel_Set(short speed)
 	
 	accelerator=speed;
 	
-	switch(F105.BulletSpeedLevel)
-	{
-		case 0:
-			bias_speed = 0;
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		default:
-			break;
-	}
+//	switch(F105.BulletSpeedLevel)
+//	{
+//		case 0:
+//			bias_speed = 0;
+//			break;
+//		case 1:
+//			break;
+//		case 2:
+//			break;
+//		default:
+//			break;
+//	}
 	
 	
-	PidFrictionSpeed[0].SetPoint=accelerator+bias_speed;
+	PidFrictionSpeed[0].SetPoint=accelerator;     //  accelerator+bias_speed;
 	PidFrictionSpeed[1].SetPoint=-accelerator;
 	
-	FrictionCurrent[0]=PID_Calc(&PidFrictionSpeed[0],FrictionReceive[0]);
-	FrictionCurrent[1]=PID_Calc(&PidFrictionSpeed[1],FrictionReceive[1]);
+	PidFrictionSpeed[0].ActualValue = FrictionReceive[0];
+	FrictionCurrent[0]=PID_Calc(&PidFrictionSpeed[0]);
+	PidFrictionSpeed[1].ActualValue = FrictionReceive[1];
+	FrictionCurrent[1]=PID_Calc(&PidFrictionSpeed[1]);
   SHOOT_Speed=FrictionReceive[0]+FrictionReceive[1];
 }
 

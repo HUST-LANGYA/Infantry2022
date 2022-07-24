@@ -1,6 +1,6 @@
 /**********************************************************************************************************
  * @文件     pid.c
- * @说明     pid算法+前馈算法
+ * @说明     pid各种优化算法+模糊PID+前馈算法
  * @版本  	 V3.0
  * @作者     黄志雄、江扬新、戴军
  * @日期     2020.1、2021.9、2022.7
@@ -9,39 +9,52 @@
 
 /**********************************************************************************************************
 *函 数 名: PID_Calc
-*功能说明: PID反馈算法
+*功能说明: PID+各种优化
 *形    参: PID_Struct *P  PID参数结构体
-  *        ActualValue    PID计算反馈量（当前真实检测值）
+  *        ActualValue    PID计算反馈量
 *返 回 值: PID反馈计算输出值
 **********************************************************************************************************/
-float PID_Calc(Pid_Typedef *P, float ActualValue)
+float PID_Calc(Pid_Typedef *P)
 {
-    P->ActualValue=ActualValue;
-		P->PreError = P->SetPoint - ActualValue;
-		
-		if((P->PreError<(P->DeadZone))&&(P->PreError>(-P->DeadZone)))
-		{
-		  P->PreError = 0.0f;
-			P->LastError = P->PreError;
-			return 0.0f;
-		}
-		P->dError = P->PreError - P->LastError;
-	
-	  P->SetPointLast = P->SetPoint;
-	
-		P->SumError += (P->PreError+P->LastError)/2;    //梯形积分代替矩形积分，提高精度
 		P->LastError = P->PreError;
+		if((ABS(P->PreError)< P->DeadZone ))   //死区控制
+		{
+			P->PreError = 0.0f;			
+		}
+		else
+		{
+			P->PreError = P->SetPoint - P->ActualValue;
+		}
 		
-		if(P->SumError >= P->IMax)
-			P->SumError = P->IMax;
-		else if(P->SumError <= -P->IMax)
-			P->SumError = -P->IMax;
-		
+		      //微分先行
+		float DM = P->D*(P->Out - P->Out_last);   //微分先行
+	
+         //变速积分   (积分分离)
+    if(ABS(P->PreError) < P->I_L )			
+		{
+	       
+		P->SumError += (P->PreError+P->LastError)/2;    
+		P->SumError = LIMIT_MAX_MIN(P->SumError,P->IMax,- P->IMax);
+		}
+		 else if( ABS(P->PreError) < P->I_U )
+		{
+	       //梯形积分
+		P->SumError += (P->PreError+P->LastError)/2*(P->PreError - P->I_L)/(P->I_U - P->I_L);    
+		P->SumError = LIMIT_MAX_MIN(P->SumError,P->IMax,- P->IMax);		
+		}
+			
 		P->POut = P->P * P->PreError;
-		P->IOut = P->I * P->SumError;
-		P->DOut = P->D * P->dError;
 		
-		return LIMIT_MAX_MIN(P->POut+P->IOut+P->DOut,P->OutMax,-P->OutMax); 
+		P->IOut = P->I * P->SumError;
+		    
+		    //不完全微分
+		P->DOut_last = P->DOut; 
+		P->DOut = DM * P->RC_DF + P->DOut_last * ( 1 - P->RC_DF );    
+		
+		P->Out_last  = P->Out;
+		P->Out = LIMIT_MAX_MIN(P->POut+P->IOut+P->DOut,P->OutMax,-P->OutMax);
+		
+		return P->Out; 
 }
 
 /**********************************************************************************************************
@@ -62,86 +75,53 @@ float FeedForward_Calc(FeedForward_Typedef *FF)
 
 
 /*********模糊pid部分*/
-/* 其中Kp、Ki、Kd是一个初值 */
 
-#define IS_Kp 1
-#define IS_Ki 2
-#define IS_Kd 3
-
-#define stair  0.25f
-#define pstair 0.015f
-#define istair 0.0005f
-#define dstair 0.001f
  
-#define NL   -(3*stair)
-#define NM	 -(2*stair)
-#define NS	 -(1*stair)
+#define NL   -3
+#define NM	 -2
+#define NS	 -1
 #define ZE	 0
-#define PS	 (1*stair)
-#define PM	 (2*stair)
-#define PL	 (3*stair)
-
-#define NLp  -(3*pstair)
-#define NMp	 -(2*pstair)
-#define NSp	 -(1*pstair)
-#define ZEp	 0
-#define PSp	 (1*pstair)
-#define PMp	 (2*pstair)
-#define PLp	 (3*pstair)
- 
-#define NLi   -(3*istair)
-#define NMi	 -(2*istair)
-#define NSi	 -(1*istair)
-#define ZEi	 0
-#define PSi	 (1*istair)
-#define PMi	 (2*istair)
-#define PLi	 (3*istair) 
-
-#define NLd   -(3*dstair)
-#define NMd	 -(2*dstair)
-#define NSd	 -(1*dstair)
-#define ZEd	 0
-#define PSd	 (1*dstair)
-#define PMd	 (2*dstair)
-#define PLd	 (3*dstair)
- 
+#define PS	 1
+#define PM	 2
+#define PL	 3
  
 static const float fuzzyRuleKp[7][7]={
-	PLp,	PLp,	PMp,	PMp,	PSp,	ZEp,	ZEp,
-	PLp,	PLp,	PMp,	PSp,	PSp,	ZEp,	NSp,
-	PMp,	PMp,	PMp,	PSp,	ZEp,	NSp,	NSp,
-	PMp,	PMp,	PSp,	ZEp,	NSp,	NMp,	NMp,
-	PSp,	PSp,	ZEp,	NSp,	NSp,	NMp,	NMp,
-	PSp,	ZEp,	NSp,	NMp,	NMp,	NMp,	NLp,
-	ZEp,	ZEp,	NMp,	NMp,	NMp,	NLp,	NLp
+	PL,	PL,	PM,	PM,	PS,	ZE,	ZE,
+	PL,	PL,	PM,	PS,	PS,	ZE,	NS,
+	PM,	PM,	PM,	PS,	ZE,	NS,	NS,
+	PM,	PM,	PS,	ZE,	NS,	NM,	NM,
+	PS,	PS,	ZE,	NS,	NS,	NM,	NM,
+	PS,	ZE,	NS,	NM,	NM,	NM,	NL,
+	ZE,	ZE,	NM,	NM,	NM,	NL,	NL
 };
  
 static const float fuzzyRuleKi[7][7]={
-	NLi,	NLi,	NMi,	NMi,	NSi,	ZEi,	ZEi,
-	NLi,	NLi,	NMi,	NSi,	NSi,	ZEi,	ZEi,
-	NLi,	NMi,	NSi,	NSi,	ZEi,	PSi,	PSi,
-	NMi,	NMi,	NSi,	ZEi,	PSi,	PMi,	PMi,
-	NSi,	NSi,	ZEi,	PSi,	PSi,	PMi,	PLi,
-	ZEi,	ZEi,	PSi,	PSi,	PMi,	PLi,	PLi,
-	ZEi,	ZEi,	PSi,	PMi,	PMi,	PLi,	PLi
+	NL,	NL,	NM,	NM,	NS,	ZE,	ZE,
+	NL,	NL,	NM,	NS,	NS,	ZE,	ZE,
+	NL,	NM,	NS,	NS,	ZE,	PS,	PS,
+	NM,	NM,	NS,	ZE,	PS,	PM,	PM,
+	NS,	NS,	ZE,	PS,	PS,	PM,	PL,
+	ZE,	ZE,	PS,	PS,	PM,	PL,	PL,
+	ZE,	ZE,	PS,	PM,	PM,	PL,	PL
 };
  
 static const float fuzzyRuleKd[7][7]={
-	PSd,	NSd,	NLd,	NLd,	NLd,	NMd,	PSd,
-	PSd,	NSd,	NLd,	NMd,	NMd,	NSd,	ZEd,
-	ZEd,	NSd,	NMd,	NMd,	NSd,	NSd,	ZEd,
-	ZEd,	NSd,	NSd,	NSd,	NSd,	NSd,	ZEd,
-	ZEd,	ZEd,	ZEd,	ZEd,	ZEd,	ZEd,	ZEd,
-	PLd,	NSd,	PSd,	PSd,	PSd,	PSd,	PLd,
-	PLd,	PMd,	PMd,	PMd,	PSd,	PSd,	PLd
+	PS,	NS,	NL,	NL,	NL,	NM,	PS,
+	PS,	NS,	NL,	NM,	NM,	NS,	ZE,
+	ZE,	NS,	NM,	NM,	NS,	NS,	ZE,
+	ZE,	NS,	NS,	NS,	NS,	NS,	ZE,
+	ZE,	ZE,	ZE,	ZE,	ZE,	ZE,	ZE,
+	PL,	NS,	PS,	PS,	PS,	PS,	PL,
+	PL,	PM,	PM,	PM,	PS,	PS,	PL
 };
  
 
  //关键算法
-void fuzzy( FuzzyPID*  fuzzy_PID,float e,float ec)
+void fuzzy( FuzzyPID*  fuzzy_PID)
 {
-
-     float etemp,ectemp;
+     float e = fuzzy_PID ->PreError/ fuzzy_PID->stair;
+	   float ec = (fuzzy_PID ->Out - fuzzy_PID ->Out_last) / fuzzy_PID->stair;
+     short etemp,ectemp;
      float eLefttemp,ecLefttemp;    //隶属度
      float eRighttemp ,ecRighttemp; 
  
@@ -191,11 +171,11 @@ void fuzzy( FuzzyPID*  fuzzy_PID,float e,float ec)
     {
 
 			//计算E隶属度
-				eRighttemp=((e-etemp)/stair);  //线性函数作为隶属函数
+				eRighttemp=(e-etemp);  //线性函数作为隶属函数
 				eLefttemp=(1- eRighttemp);
 			
      //计算标签
-	   eLeftIndex =(short) ((etemp-NL)/stair);       //例如 etemp=2.5，NL=-3，那么得到的序列号为5  【0 1 2 3 4 5 6】
+	   eLeftIndex =(short) (etemp-NL);       //例如 etemp=2.5，NL=-3，那么得到的序列号为5  【0 1 2 3 4 5 6】
 	   eRightIndex=(short) (eLeftIndex+1);
 			
 		}		
@@ -239,10 +219,10 @@ void fuzzy( FuzzyPID*  fuzzy_PID,float e,float ec)
 	 }else
 	 {
     //计算EC隶属度		 
-		 ecRighttemp=((ec-ectemp)/stair);
+		 ecRighttemp=(ec-ectemp);
 		 ecLefttemp=(1- ecRighttemp);
 			
-		 ecLeftIndex =(short) ((ectemp-NL)/stair);  
+		 ecLeftIndex =(short) (ectemp-NL);  
 	   ecRightIndex= (short)(eLeftIndex+1);
 	 }	
 
@@ -252,52 +232,74 @@ void fuzzy( FuzzyPID*  fuzzy_PID,float e,float ec)
  
  
  
-	fuzzy_PID->Kp = (eLefttemp * ecLefttemp *  fuzzyRuleKp[eLeftIndex][ecLeftIndex]                   
+	fuzzy_PID->dKp = fuzzy_PID->Kp_stair * (eLefttemp * ecLefttemp * fuzzyRuleKp[eLeftIndex][ecLeftIndex]                   
    + eLefttemp * ecRighttemp * fuzzyRuleKp[eLeftIndex][ecRightIndex]
    + eRighttemp * ecLefttemp * fuzzyRuleKp[eRightIndex][ecLeftIndex]
    + eRighttemp * ecRighttemp * fuzzyRuleKp[eRightIndex][ecRightIndex]);
  
-	fuzzy_PID->Ki =   (eLefttemp * ecLefttemp * fuzzyRuleKi[eLeftIndex][ecLeftIndex]
+	fuzzy_PID->dKi = fuzzy_PID->Ki_stair * (eLefttemp * ecLefttemp * fuzzyRuleKi[eLeftIndex][ecLeftIndex]
    + eLefttemp * ecRighttemp * fuzzyRuleKi[eLeftIndex][ecRightIndex]
    + eRighttemp * ecLefttemp * fuzzyRuleKi[eRightIndex][ecLeftIndex]
    + eRighttemp * ecRighttemp * fuzzyRuleKi[eRightIndex][ecRightIndex]);
 
  
-	fuzzy_PID->Kd = (eLefttemp * ecLefttemp *    fuzzyRuleKd[eLeftIndex][ecLeftIndex]
+	fuzzy_PID->dKd = fuzzy_PID->Kd_stair * (eLefttemp * ecLefttemp * fuzzyRuleKd[eLeftIndex][ecLeftIndex]
    + eLefttemp * ecRighttemp * fuzzyRuleKd[eLeftIndex][ecRightIndex]
    + eRighttemp * ecLefttemp * fuzzyRuleKd[eRightIndex][ecLeftIndex]
    + eRighttemp * ecRighttemp * fuzzyRuleKd[eRightIndex][ecRightIndex]);
  
 }
- 
-//此处的全局变量用来保存模糊的kp，ki，kd增量 
-FuzzyPID OUT;
-float FuzzyPID_Calc(FuzzyPID *pid)
-{
-	static float LastError;
- 
-	pid->PreError = pid->SetPoint - pid->ActPoint;             //E :目标值-实际值
-	pid->dError = pid->PreError - LastError;                   //EC:误差变化率
-	pid->SumError += (pid->PreError + pid->LastError)/2.0F;    //梯形积分减小误差
-	
-			
-		if(pid->SumError >= pid->IMax)
-			pid->SumError = pid->IMax;
-		else if(pid->SumError <= -pid->IMax)
-			pid->SumError = -pid->IMax;
-	
-	pid->LastError = pid->PreError;
-	LastError=pid->PreError;
-	
-		pid->POut = pid->Kp * pid->PreError;
-		pid->IOut = pid->Ki* pid->SumError;
-		pid->DOut = pid->Kd * pid->dError;		
-		
-		
-	 fuzzy(&OUT,pid->PreError, pid->dError);      //模糊调整  kp,ki,kd   形参1当前误差，形参2前后误差的差值
 
-//	return (pid->Kp+OUT.Kp)*pid->PreError + (pid->Kd+OUT.Kd)*pid->dError + (pid->Ki+OUT.Ki)*pid->SumError;  //PID均模糊
-//  return (pid->Kp+OUT.Kp)*pid->PreError + (pid->Kd)*pid->dError + (pid->Ki+OUT.Ki)*pid->SumError;              //仅PI模糊
-   	return (pid->Kp+OUT.Kp)*pid->PreError + (pid->Kd+OUT.Kd)*pid->dError + (pid->Ki)*pid->SumError;       //仅PD模糊
-//	return (pid->Kp+OUT.Kp)*pid->PreError + pid->Kd*pid->dError + pid->Ki*pid->SumError;                  //仅P模糊
+
+float FuzzyPID_Calc(FuzzyPID *P)
+{
+	
+	  P->LastError = P->PreError;
+	  
+	  if((ABS(P->PreError)< P->DeadZone ))   //死区控制
+		{
+			P->PreError = 0.0f;			
+		}
+		else
+		{
+			P->PreError = P->SetPoint - P->ActualValue;
+		}
+		
+		fuzzy(P);      //模糊调整  kp,ki,kd   形参1当前误差，形参2前后误差的差值
+	
+    float Kp = P->Kp0 + P->dKp , Ki = P->Ki0 + P->dKi , Kd = P->Kd0 + P->dKd ;   //PID均模糊
+//	float Kp = P->Kp0 + P->dKp , Ki = P->Ki0  , Kd = P->Kd0 + P->dKd ;           //仅PD均模糊
+//	float Kp = P->Kp0 + P->dKp , Ki = P->Ki0  , Kd = P->Kd0 ;                    //仅P均模糊
+
+		
+		
+		      //微分先行
+		float DM = Kd*(P->Out - P->Out_last);   //微分先行	
+         //变速积分
+    if(ABS(P->PreError) < P->I_L )			
+		{
+	       //梯形积分
+		P->SumError += (P->PreError+P->LastError)/2;    
+		P->SumError = LIMIT_MAX_MIN(P->SumError,P->IMax,- P->IMax);
+		}
+		 else if( ABS(P->PreError) < P->I_U )
+		{
+	       //梯形积分
+		P->SumError += (P->PreError+P->LastError)/2*(P->PreError - P->I_L)/(P->I_U - P->I_L);    
+		P->SumError = LIMIT_MAX_MIN(P->SumError,P->IMax,- P->IMax);		
+		}
+			
+		P->POut = Kp * P->PreError;
+		
+		P->IOut = Ki * P->SumError;
+		    
+		    //不完全微分
+		P->DOut_last = P->DOut; 
+		P->DOut = DM * P->RC_DF + P->DOut_last * ( 1 - P->RC_DF );    
+		
+		P->Out_last  = P->Out;
+		P->Out = LIMIT_MAX_MIN(P->POut+P->IOut+P->DOut,P->OutMax,-P->OutMax);
+		
+    return P->Out;                             
+
 }

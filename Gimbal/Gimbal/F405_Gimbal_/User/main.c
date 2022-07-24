@@ -13,8 +13,7 @@
  * @日期     2022.6
 **********************************************************************************************************/
 #include "main.h"
-extern KalmanFilter_t pitch_Kalman, yaw_Kalman;
-extern KalmanFilter_Init_t K;
+
 unsigned volatile long run_time_check = 0;	//用于做各种简易计数器计数
 short fric_flag = 0;//摩擦轮电机初始化标志
 RobotInit_Struct Infantry;
@@ -148,10 +147,10 @@ void Infantry_Init(void)
 	Infantry.FricMotorID[0]=0x203;
 	Infantry.FricMotorID[1]=0x201;
 	Infantry.BodanMotorID=0x202;
-	Infantry.pitch_max_motor = 38;
+	Infantry.pitch_max_motor = 37;
 	Infantry.pitch_min_motor = -15;
 	Infantry.pitch_max_gyro = 36;
-	Infantry.pitch_min_gyro = -16;
+	Infantry.pitch_min_gyro = -15;
 	Infantry.gyro_pn=1;
 	Infantry.motor_pn=1;
 	

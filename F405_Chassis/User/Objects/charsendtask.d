@@ -2,7 +2,7 @@
 .\objects\charsendtask.o: ..\User\main.h
 .\objects\charsendtask.o: ..\User\stm32f4xx.h
 .\objects\charsendtask.o: ..\Library\CMSIS\core_cm4.h
-.\objects\charsendtask.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\charsendtask.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\charsendtask.o: ..\Library\CMSIS\core_cmInstr.h
 .\objects\charsendtask.o: ..\Library\CMSIS\core_cmFunc.h
 .\objects\charsendtask.o: ..\Library\CMSIS\core_cm4_simd.h
@@ -20,12 +20,12 @@
 .\objects\charsendtask.o: ..\Library\inc\misc.h
 .\objects\charsendtask.o: ..\Library\inc\stm32f4xx_can.h
 .\objects\charsendtask.o: ..\Library\inc\stm32f4xx_dac.h
-.\objects\charsendtask.o: D:\Keil\ARM\ARMCC\Bin\..\include\string.h
+.\objects\charsendtask.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\charsendtask.o: ..\Library\CMSIS\arm_math.h
 .\objects\charsendtask.o: ..\Library\CMSIS\core_cm4.h
-.\objects\charsendtask.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h
-.\objects\charsendtask.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\charsendtask.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\charsendtask.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\charsendtask.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\charsendtask.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\charsendtask.o: ..\Hardware\can1.h
 .\objects\charsendtask.o: ..\Hardware\can2.h
 .\objects\charsendtask.o: ..\Hardware\usart2.h
@@ -52,7 +52,7 @@
 .\objects\charsendtask.o: ..\Task\StartTask.h
 .\objects\charsendtask.o: ..\Task\JumpCal_Task.h
 .\objects\charsendtask.o: ..\FreeRTOS\include\FreeRTOS.h
-.\objects\charsendtask.o: D:\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\charsendtask.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\charsendtask.o: ..\User\FreeRTOSConfig.h
 .\objects\charsendtask.o: ..\FreeRTOS\include\projdefs.h
 .\objects\charsendtask.o: ..\FreeRTOS\include\portable.h

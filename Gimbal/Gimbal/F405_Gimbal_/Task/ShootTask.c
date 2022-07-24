@@ -280,7 +280,8 @@ void Shoot_Fire_Cal()
 						}
 			
 				}
-				PidBodanMotorSpeed.SetPoint = PID_Calc(&PidBodanMotorPos,Bodan_Pos);			
+				PidBodanMotorPos.ActualValue = Bodan_Pos;
+				PidBodanMotorSpeed.SetPoint = PID_Calc(&PidBodanMotorPos);			
 			}
 		
 	}
@@ -353,7 +354,8 @@ void Shoot_Test_Cal()
 			}
 		}
 	}	
-	 PidBodanMotorSpeed.SetPoint = PID_Calc(&PidBodanMotorPos,Bodan_Pos);		
+	 PidBodanMotorPos.ActualValue = Bodan_Pos;
+	 PidBodanMotorSpeed.SetPoint = PID_Calc(&PidBodanMotorPos);		
  
 }
 
@@ -368,8 +370,8 @@ void Shoot_Powerdown_Cal(void)
 	if(ShootAct_Init_Flag!=4)
 	  ShootAct_Init_Flag=4;
 	
-	PidBodanMotorPos.SetPoint=Bodan_Pos;
-	PidBodanMotorSpeed.SetPoint=PID_Calc(&PidBodanMotorPos,Bodan_Pos);
+	PidBodanMotorPos.SetPoint = PidBodanMotorPos.ActualValue = Bodan_Pos;
+	PidBodanMotorSpeed.SetPoint=PID_Calc(&PidBodanMotorPos);
 	ReverseRotation = 0;
 	Reverse_Flag = 0;
 	ShootContinue = 0;
@@ -525,8 +527,8 @@ void BodanMotor_CurrentPid_Cal(void)
   	Shoot_Powerdown_Cal();
 		delay_time=-2000;
 	}
-
-	BodanMotorCurrent = (short)PID_Calc(&PidBodanMotorSpeed,BodanReceive.RealSpeed);
+  PidBodanMotorSpeed.ActualValue = BodanReceive.RealSpeed;
+	BodanMotorCurrent = (short)PID_Calc(&PidBodanMotorSpeed);
 if(Status.ShootMode==Shoot_Powerdown_Mode)
 {
   BodanMotorCurrent =0.0f;
@@ -548,6 +550,10 @@ void Pid_BodanMotor_Init(void)
 	PidBodanMotorPos.IMax=1500.0f;
 	PidBodanMotorPos.SetPoint=0.0f;
 	PidBodanMotorPos.OutMax=6000.0f;
+	PidBodanMotorPos.RC_DF = 0.5F;
+	PidBodanMotorPos.I_L = 6000;
+	PidBodanMotorPos.I_U = 12000;
+	
 
 	PidBodanMotorSpeed.P=15.0f;  //5.0f
 	PidBodanMotorSpeed.I=0.5f;//0.01f;
@@ -556,6 +562,9 @@ void Pid_BodanMotor_Init(void)
 	PidBodanMotorSpeed.IMax=1000.0f;
 	PidBodanMotorSpeed.SetPoint=0.0f;
 	PidBodanMotorSpeed.OutMax = 10000.0f;
+	PidBodanMotorSpeed.I_L = 100;
+	PidBodanMotorSpeed.I_U = 200;
+	PidBodanMotorSpeed.RC_DF = 0.5F;
 	
 #if(Robot_ID == 3 || Robot_ID == 4 || Robot_ID == 14)
 
@@ -589,7 +598,7 @@ void Pid_Friction_Init(void)
 
 			Infantry.Low_FrictionSpeed = 4800;    //4850:14.1  …‰∆µ£∫4.5
  			Infantry.Medium_FrictionSpeed = 5650;  //17.4
-			Infantry.High_FrictionSpeed = 15000;
+			Infantry.High_FrictionSpeed = 16000;
 
 #elif  Robot_ID == 14
 /********************************************* 14∫≈≥µ *******************************************************/	
@@ -612,18 +621,25 @@ void Pid_Friction_Init(void)
 #endif
 
   PidFrictionSpeed[0].P=60.0f;
-	PidFrictionSpeed[0].I=0.0f;
+	PidFrictionSpeed[0].I=3.0f;
 	PidFrictionSpeed[0].D=0.0f;
 	PidFrictionSpeed[0].IMax=1500.0f;
 	PidFrictionSpeed[0].SetPoint=0.0f;
 	PidFrictionSpeed[0].OutMax = 9900.0f;
+	PidFrictionSpeed[0].RC_DF = 0.1F;
+	PidFrictionSpeed[0].I_L = 75;
+	PidFrictionSpeed[0].I_U =150;
+	
 	
   PidFrictionSpeed[1].P=60.0f;
-	PidFrictionSpeed[1].I=0.0f;
+	PidFrictionSpeed[1].I=3.0f;
 	PidFrictionSpeed[1].D=0.0f;
 	PidFrictionSpeed[1].IMax=1500.0f;
 	PidFrictionSpeed[1].SetPoint=0.0f;
 	PidFrictionSpeed[1].OutMax = 9900.0f;
+	PidFrictionSpeed[1].RC_DF = 0.1F;
+	PidFrictionSpeed[1].I_L = 75;
+	PidFrictionSpeed[1].I_U =150;
 	
 }
 

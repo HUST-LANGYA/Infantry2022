@@ -280,7 +280,8 @@ void Chassis_Act_Cal(Remote rc,Key key)
 	
 #endif	
 //反馈PID控制+前馈
-  chassis.carSpeedw = -PID_Calc(&pidChassisPosition, Gimbal.Yaw.Motor) +  FeedForward_Calc(&FF_w);
+	pidChassisPosition.ActualValue = Gimbal.Yaw.Motor;
+  chassis.carSpeedw = -PID_Calc(&pidChassisPosition) +  FeedForward_Calc(&FF_w);
 
 
 	}
@@ -473,16 +474,22 @@ if(Status.ControlMode==Control_RC_Mode)
 				SOLO_bias = -SOLO_bias;
 	  	}
 			SOLO_pidChassisPosition.SetPoint = SOLO_bias;					//单挑模式用单独的pid
-			pidChassisPosition_Speed.SetPoint = -PID_Calc(&SOLO_pidChassisPosition, ResetPos);
-			chassis.carSpeedw = PID_Calc(&pidChassisPosition_Speed,F105.ChassisSpeedw);
+			SOLO_pidChassisPosition.ActualValue = ResetPos;
+			pidChassisPosition_Speed.SetPoint = -PID_Calc(&SOLO_pidChassisPosition);
+			pidChassisPosition_Speed.ActualValue = F105.ChassisSpeedw;
+			chassis.carSpeedw = PID_Calc(&pidChassisPosition_Speed);
 
 		}
 		else		//开始运动，停止扭腰
 		{
 			ResetPos = (ChassisPostionAngle_TranSform(Infantry.Solo_Yaw_init))/360*8192;		//与正对角差值计算
+			
 			SOLO_pidChassisPosition.SetPoint = 0;
-			pidChassisPosition_Speed.SetPoint = -PID_Calc(&SOLO_pidChassisPosition, ResetPos);
-			chassis.carSpeedw = PID_Calc(&pidChassisPosition_Speed,F105.ChassisSpeedw);
+			SOLO_pidChassisPosition.ActualValue = ResetPos;
+			pidChassisPosition_Speed.SetPoint = -PID_Calc(&SOLO_pidChassisPosition);
+			
+			pidChassisPosition_Speed.ActualValue = F105.ChassisSpeedw;
+			chassis.carSpeedw = PID_Calc(&pidChassisPosition_Speed);
 
 		}
 	
@@ -683,7 +690,8 @@ if(Status.ControlMode==Control_RC_Mode)
 	}
 	
 //反馈PID控制+前馈
-  chassis.carSpeedw = -PID_Calc(&pidChassisPosition, Gimbal.Yaw.Motor) +  FeedForward_Calc(&FF_w);
+	pidChassisPosition.ActualValue = Gimbal.Yaw.Motor;
+  chassis.carSpeedw = -PID_Calc(&pidChassisPosition) +  FeedForward_Calc(&FF_w);
 
 
 }
@@ -775,16 +783,13 @@ void Pid_ChassisPosition_Init(void)
 	  pidChassisPosition.IMax = 300.0f;
 	  pidChassisPosition.OutMax = 16000.0f;
 	  pidChassisPosition.DeadZone=0.0f;
+		pidChassisPosition.RC_DF = 0.5f;
+
 	
 		FF_w.K1 = 20000.0f;
 		FF_w.K2 = 0.0f;
 		FF_w.OutMax = 16000.0f;
 		
-//	  SOLO_pidChassisPosition.P = 1.8f;		
-//	  SOLO_pidChassisPosition.I = 0.0f;					
-//	  SOLO_pidChassisPosition.D = 0.0f;				
-//	  SOLO_pidChassisPosition.IMax = 200.0f;
-//	  SOLO_pidChassisPosition.OutMax = 2000.0f;
 
 #elif Robot_ID == 4	
 	/********************************************* 4号车 ***********************************************************/	
@@ -794,6 +799,7 @@ void Pid_ChassisPosition_Init(void)
 	  pidChassisPosition.IMax = 300.0f;
 	  pidChassisPosition.OutMax = 16000.0f;
 	  pidChassisPosition.DeadZone=0.0f;
+		pidChassisPosition.RC_DF = 0.5f;
 	
 		FF_w.K1 = 20000.0f;
 		FF_w.K2 = 0.0f;
@@ -803,10 +809,11 @@ void Pid_ChassisPosition_Init(void)
 	/********************************************* 14 号车 ***********************************************************/	
 		pidChassisPosition.P = 5.0f;				//  位置环					3号车
 	  pidChassisPosition.I = 0.00f;					
-	  pidChassisPosition.D = 0.0f;				
+	  pidChassisPosition.D = 2.0f;				
 	  pidChassisPosition.IMax = 300.0f;
 	  pidChassisPosition.OutMax = 16000.0f;
 	  pidChassisPosition.DeadZone=0.0f;
+		pidChassisPosition.RC_DF = 0.5f;
 	
 		FF_w.K1 = 20000.0f;
 		FF_w.K2 = 0.0f;
@@ -820,6 +827,7 @@ void Pid_ChassisPosition_Init(void)
 	  pidChassisPosition.IMax = 300.0f;
 	  pidChassisPosition.OutMax = 16000.0f;
 	  pidChassisPosition.DeadZone=0.0f;
+		pidChassisPosition.RC_DF = 0.5f;
 	
 		FF_w.K1 = 15000.0f;
 		FF_w.K2 = 0.0f;
