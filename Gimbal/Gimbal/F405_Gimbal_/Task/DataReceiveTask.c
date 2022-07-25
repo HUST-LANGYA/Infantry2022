@@ -22,6 +22,7 @@ BodanMotorReceive_Typedef BodanReceive;
 char PitchMotor_ReceiveFlag;
 short FrictionReceive[2];
 float PitchMotorReceive,YawMotorReceive;//Pitch,Yaw电机角度
+float yaw_gyro_temp,pitch_gyro_temp;
 
 Disconnect Robot_Disconnect;
 
@@ -139,31 +140,43 @@ void Can2Receive0(CanRxMsg rx_message0)
 *形    参: rx_message1
 *返 回 值: 无
 **********************************************************************************************************/
-int gyro_receive;
 void Can2Receive1(CanRxMsg rx_message1)
 {
 	switch(rx_message1.StdId)
 	{ 
 		 case 0x100:
 		 {
-			 memcpy(&GyroReceive.PITCH, rx_message1.Data, 4);
+			 memcpy(&pitch_gyro_temp, rx_message1.Data, 4);
 			 memcpy(&GyroReceive.GY, &rx_message1.Data[4], 4);
 			 GyroReceive.GY*= Infantry.gyro_pn;
-			 GyroReceive.PITCH*= Infantry.gyro_pn;
+			 //程序安全
+			 if(ABS(pitch_gyro_temp)<50.0f)
+			 {
+			 GyroReceive.PITCH = pitch_gyro_temp*Infantry.gyro_pn;
+			 }
+			 else
+			 {
+			 GyroReceive.PITCH = Gimbal.Pitch.MotorTransAngle;
+			 }
 		 }
 		 break;
 		 case 0x101:
 		 {
-			 memcpy(&GyroReceive.YAW, &rx_message1.Data, 4);
+			 memcpy(&yaw_gyro_temp, &rx_message1.Data, 4);
 			 memcpy(&GyroReceive.GZ, &rx_message1.Data[4], 4);
+			 //程序安全
+			 if(yaw_gyro_temp < 180.0f && yaw_gyro_temp > -180.0f)
+			 {
+			 GyroReceive.YAW = yaw_gyro_temp;
+			 }
 			 Robot_Disconnect.Gyro_DisConnect=0;
 		 }
 		 break;
-		 case 0x133:
-		 {
-			 memcpy(&GyroReceive.ROLL, &rx_message1.Data, 4);
-			 memcpy(&GyroReceive.GX, &rx_message1.Data[4], 4);
-		 }
+//		 case 0x133:
+//		 {
+//			 memcpy(&GyroReceive.ROLL, &rx_message1.Data, 4);
+//			 memcpy(&GyroReceive.GX, &rx_message1.Data[4], 4);
+//		 }
 	 }
 }
 

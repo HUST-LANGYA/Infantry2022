@@ -8,6 +8,8 @@
 #include "main.h"
 /*--------------------------内部变量----------------------------*/
 float Bodan_Pos;
+float pitch_motor_temp;
+char  pitch_lose_flag;
 /*--------------------------结构体----------------------------*/
 Gimbal_Typedef Gimbal;
 ZeroCheck_Typedef ZeroCheck_Pitch,ZeroCheck_Yaw,ZeroCheck_Pitch_speed,ZeroCheck_Yaw_speed; 
@@ -69,9 +71,19 @@ float ZeroCheck(ZeroCheck_Typedef *Zero,float value,short Zerocheck_mode)
 **********************************************************************************************************/
 void ZeroCheck_cal(void)
 {
-	Gimbal.Pitch.Gyro = ZeroCheck(&ZeroCheck_GyroPitch,GyroReceive.PITCH,Position);
+	Gimbal.Pitch.Gyro = GyroReceive.PITCH;
 	Gimbal.Pitch.Motor = ZeroCheck(&ZeroCheck_Pitch,PitchMotorReceive,Position);
-	Gimbal.Pitch.MotorTransAngle = Infantry.motor_pn*(Infantry.Pitch_init-Gimbal.Pitch.Motor)/8192.0f*360.0f;
+	pitch_motor_temp = Infantry.motor_pn*(Infantry.Pitch_init-Gimbal.Pitch.Motor)/8192.0f*360.0f;
+	
+	if( ABS(pitch_motor_temp) > 50.0f)
+	{
+	  pitch_lose_flag = 1;
+	}
+	else
+	{
+	  pitch_lose_flag = 0;	
+		Gimbal.Pitch.MotorTransAngle = pitch_motor_temp;
+	}
 	
 	Gimbal.Yaw.Gyro = ZeroCheck(&ZeroCheck_GyroYaw,GyroReceive.YAW,Position);
 	Gimbal.Yaw.Motor = ZeroCheck(&ZeroCheck_Yaw,YawMotorReceive,Position);

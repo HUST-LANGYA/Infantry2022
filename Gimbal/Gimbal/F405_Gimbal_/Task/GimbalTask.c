@@ -42,6 +42,7 @@ extern char Budan;
 extern float Buff_Yaw_Motor;
 extern char q_flag;
 extern FeedForward_Typedef FF_w;
+extern char  pitch_lose_flag;
 /**********************************************************************************************************
 *函 数 名: Gimbal_Powerdown_Cal
 *功能说明: 云台掉电模式
@@ -652,8 +653,14 @@ void Gimbal_CurrentPid_Cal(void)
 	if(q_flag) F405.Gimbal_Flag = 7;     //云台自己打弹
 	else       F405.Gimbal_Flag = Status.GimbalMode;
 	
+	if(!pitch_lose_flag)  //防堵转
+	{
 	GimbalCan2Send(PitchCurrent,YawCurrent);
-
+	}
+	else
+	{
+	 GimbalCan2Send(0,YawCurrent);
+	}
 }
 
 

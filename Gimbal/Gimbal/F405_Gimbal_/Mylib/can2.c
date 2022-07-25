@@ -82,7 +82,7 @@ void CAN2_Configuration(void)
 	can_filter.CAN_FilterMode = CAN_FilterMode_IdList; //列表模式
 	can_filter.CAN_FilterScale = CAN_FilterScale_16bit;
 	can_filter.CAN_FilterIdHigh = 0x100 << 5;
-	can_filter.CAN_FilterIdLow = 0x133<<5;
+	can_filter.CAN_FilterIdLow = 0x000<<5;
 	can_filter.CAN_FilterMaskIdHigh = 0x101 << 5;
 	can_filter.CAN_FilterMaskIdLow = 0 | CAN_ID_STD;
 	can_filter.CAN_FilterFIFOAssignment = 1;//fifo1
