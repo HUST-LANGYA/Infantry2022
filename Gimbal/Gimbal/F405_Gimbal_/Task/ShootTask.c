@@ -528,21 +528,21 @@ void Pid_Friction_Init(void)
 /********************************************* 3号车 *******************************************************/	
 			Infantry.Low_FrictionSpeed = 4900;
 			Infantry.Medium_FrictionSpeed = 5800;
-			Infantry.High_FrictionSpeed =16000;
+			Infantry.High_FrictionSpeed =12000;
 	
 #elif  Robot_ID == 4
 /********************************************* 4号车 *******************************************************/	
 
 			Infantry.Low_FrictionSpeed = 4800;    //4850:14.1  射频：4.5
  			Infantry.Medium_FrictionSpeed = 5650;  //17.4
-			Infantry.High_FrictionSpeed = 16000;
+			Infantry.High_FrictionSpeed = 9500;
 
 #elif  Robot_ID == 14
 /********************************************* 14号车 *******************************************************/	
 
 			Infantry.Low_FrictionSpeed = 4850;
 			Infantry.Medium_FrictionSpeed = 5800;
-			Infantry.High_FrictionSpeed = 16000;
+			Infantry.High_FrictionSpeed = 11000;
 #elif  Robot_ID == 5
 /********************************************* 5号车 *******************************************************/	
 

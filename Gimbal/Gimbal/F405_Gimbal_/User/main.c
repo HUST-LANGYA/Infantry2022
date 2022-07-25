@@ -139,7 +139,7 @@ void Infantry_Init(void)
 /***************************************** 14 ºÅ³µ **************************************************************/	
 	Infantry.Yaw_init=4747;    //4728        // 14ºÅ³µ
 	Infantry.Pitch_init=2035;
-	Infantry.MagOpen=1000;
+	Infantry.MagOpen=1200;
 	Infantry.MagClose=1900;
 	Infantry.Solo_Yaw_init = 20;
 	Infantry.PitchMotorID = 0x205;
