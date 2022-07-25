@@ -250,16 +250,11 @@ void fuzzy( FuzzyPID*  fuzzy_PID)
 
 float FuzzyPID_Calc(FuzzyPID *P)
 {
-	
-	  P->LastError = P->PreError;
-	  
+		P->LastError = P->PreError;
+		P->PreError = P->SetPoint - P->ActualValue;
 	  if((ABS(P->PreError)< P->DeadZone ))   //死区控制
 		{
 			P->PreError = 0.0f;			
-		}
-		else
-		{
-			P->PreError = P->SetPoint - P->ActualValue;
 		}
 		
 		fuzzy(P);      //模糊调整  kp,ki,kd   形参1当前误差，形参2前后误差的差值
@@ -268,8 +263,6 @@ float FuzzyPID_Calc(FuzzyPID *P)
 //	float Kp = P->Kp0 + P->dKp , Ki = P->Ki0  , Kd = P->Kd0 + P->dKd ;           //仅PD均模糊
 //	float Kp = P->Kp0 + P->dKp , Ki = P->Ki0  , Kd = P->Kd0 ;                    //仅P均模糊
 
-		
-		
 		      //微分先行
 		float DM = Kd*(P->Out - P->Out_last);   //微分先行	
          //变速积分
