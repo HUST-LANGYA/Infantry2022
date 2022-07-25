@@ -481,9 +481,9 @@ if(Status.ShootMode==Shoot_Powerdown_Mode)
 void Pid_BodanMotor_Init(void)
 {
 	
-	PidBodanMotorPos.P=0.6f;
+	PidBodanMotorPos.P=0.4f;
 	PidBodanMotorPos.I=0.0f;
-	PidBodanMotorPos.D=0.2f;
+	PidBodanMotorPos.D=0.0f;
 	PidBodanMotorPos.IMax=1500.0f;
 	PidBodanMotorPos.SetPoint=0.0f;
 	PidBodanMotorPos.OutMax=20000.0f;
@@ -493,7 +493,7 @@ void Pid_BodanMotor_Init(void)
 	
 
 	PidBodanMotorSpeed.P=20.0f;  //5.0f
-	PidBodanMotorSpeed.I=0.5f;//0.01f;
+	PidBodanMotorSpeed.I=0.0f;//0.01f;
 	PidBodanMotorSpeed.D=0.0f;
 	PidBodanMotorSpeed.DeadZone=50.0f;
 	PidBodanMotorSpeed.IMax=1000.0f;
