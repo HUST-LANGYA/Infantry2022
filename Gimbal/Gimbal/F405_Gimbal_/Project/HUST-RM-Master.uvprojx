@@ -335,7 +335,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,STM32F40_41xxx, ARM_MATH_CM4, __FPU_PRESENT=1, __FPU_USED =1, __CC_ARM</Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F40_41xxx, ARM_MATH_CM4, __FPU_PRESENT=1, __FPU_USED =1, __CC_ARM,__TARGET_FPU_VFP, ARM_MATH_MATRIX_CHECK,ARM_MATH_ROUNDING</Define>
               <Undefine></Undefine>
               <IncludePath>..\User;..\Task;..\Mylib;..\Library\inc;..\Library\CMSIS;..\FreeRTOS\include;..\FreeRTOS\port\RVDS\ARM_CM4F;..\Algorithm;..\Algorithm</IncludePath>
             </VariousControls>

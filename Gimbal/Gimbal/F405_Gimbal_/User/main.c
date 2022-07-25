@@ -138,8 +138,8 @@ void Infantry_Init(void)
 #elif Robot_ID == 14
 /***************************************** 14 ºÅ³µ **************************************************************/	
 	Infantry.Yaw_init=4747;    //4728        // 14ºÅ³µ
-	Infantry.Pitch_init=2035;
-	Infantry.MagOpen=1200;
+	Infantry.Pitch_init=6123;
+	Infantry.MagOpen=2500;
 	Infantry.MagClose=1900;
 	Infantry.Solo_Yaw_init = 20;
 	Infantry.PitchMotorID = 0x205;
@@ -147,10 +147,10 @@ void Infantry_Init(void)
 	Infantry.FricMotorID[0]=0x203;
 	Infantry.FricMotorID[1]=0x201;
 	Infantry.BodanMotorID=0x202;
-	Infantry.pitch_max_motor = 37;
-	Infantry.pitch_min_motor = -15;
-	Infantry.pitch_max_gyro = 36;
-	Infantry.pitch_min_gyro = -15;
+	Infantry.pitch_max_motor = 28;
+	Infantry.pitch_min_motor = -8;
+	Infantry.pitch_max_gyro = 28;
+	Infantry.pitch_min_gyro = -8;
 	Infantry.gyro_pn=1;
 	Infantry.motor_pn=1;
 	
