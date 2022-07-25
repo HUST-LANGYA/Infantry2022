@@ -17,7 +17,7 @@ typedef struct F105{
 void ChassisCan1Send(short a,short b,short c,short d);
 void Can2Send0(F105_Typedef *F105_Send);
 void Can2Send1(void);
-void Can2Send2(void);
+void Can2Send2(uint8_t BuffState);
 void USART2SEND(void);
 
 #endif 

@@ -162,13 +162,18 @@ void JudgeBuffReceive(unsigned char ReceiveBuffer[],uint16_t DataLen)
 					Last_chassisPower=JudgeReceive.realChassispower;
 				}
 				
+				//实时增益数据
+				if((cmd_id==0x0204)&&(Verify_CRC16_Check_Sum(&SaveBuffer[PackPoint],DataLen+9)))
+				{
+					Can2Send2(SaveBuffer[PackPoint+7+0]);
+				}
+				
 				//实时射击信息
 					if((cmd_id==0x0207)&&(Verify_CRC16_Check_Sum(&SaveBuffer[PackPoint],DataLen+9)))
 				{
 					memcpy(&JudgeReceive.bulletFreq, &SaveBuffer[PackPoint+7+2],1);
 					memcpy(&JudgeReceive.bulletSpeed,&SaveBuffer[PackPoint+7+3],4);
 					JudgeReceive.ShootCpltFlag = 1;
-//					Can2Send2();
 				}
 				
 			}

@@ -130,6 +130,7 @@ void Gimbal_Powerdown_Cal()
 *形    参: rc  mouse  Pc_RecvData
 *返 回 值: 无
 **********************************************************************************************************/
+float k_yaw;
 void FuzzyMotorGimbal_Act_Cal(Remote rc,Mouse mouse)
 {
 	if( GimbalAct_Init_Flag!=Gimbal_Act_Mode)
@@ -178,14 +179,13 @@ void FuzzyMotorGimbal_Act_Cal(Remote rc,Mouse mouse)
 	inttoshort[0]=(PID_Calc(&PidPitchSpeed));//旧陀螺仪
 	PitchCurrent=(short)(-inttoshort[0])*Infantry.motor_pn;
 	
-
-
 //YAW
 	PidYawPos.ActualValue = Gimbal.Yaw.Gyro;
 	PidYawSpeed.SetPoint=PID_Calc(&PidYawPos);					//需要YAW轴陀螺仪角度做ActualValue
 	PidYawSpeed.ActualValue = GyroReceive.GZ;    
 	inttoshort[1]=PID_Calc(&PidYawSpeed);
 	YawCurrent=(short)inttoshort[1];
+	k_yaw=YawCurrent/((1024-rc.ch2)*0.0010f);
 	/* pid_test 负数*/
 //	test_gyro_pitch = -Gimbal.Pitch.Gyro;
 //	test_gyro_yaw = -Gimbal.Yaw.Gyro;
@@ -840,7 +840,7 @@ void PidGimbalMotor_Init(void)
 #elif Robot_ID == 4
 /********************************************* 4号车 ********************************************************/	
  //手动pitch双环
-  PidPitchPos.P=0.35f;       //手动pitch角度环
+  PidPitchPos.P=0.25f;       //手动pitch角度环
 	PidPitchPos.I=0.0001f;
 	PidPitchPos.D=0.0f;       
 	PidPitchPos.IMax=10.0f;
@@ -862,7 +862,7 @@ void PidGimbalMotor_Init(void)
   
 	
 	//手动yaw双环                                 // 4号车
-  PidYawPos.P=0.22f;        //手动yaw角度环
+  PidYawPos.P=0.27f;        //手动yaw角度环
 	PidYawPos.I=0.00f;
 	PidYawPos.D=0.0f;       
 	PidYawPos.IMax=10.0f;

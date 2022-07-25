@@ -18,7 +18,7 @@ short Mouse_Key_Flag;
 short waitFlag[10]={10,0,0,0,0,0,0,0,0,0};
 short SpeedMode = 1;//摩擦轮射速挡位
 short ctrl_rising_flag,pre_key_ctrl,v_rising_flag,pre_key_v,c_rising_flag,pre_key_c,pre_key_e,e_rising_flag,x_rising_flag,pre_key_x,Press_Key_x_Flag,v_rising_flag,pre_key_b;
-short q_rising_flag,b_rising_flag,f_rising_flag,g_rising_flag,pre_key_f,mouse_Press_r_rising_flag,pre_mouse_l,r_rising_flag,pre_key_r,z_rising_flag,pre_key_z,Press_Key_z_Flag;
+short q_rising_flag,b_rising_flag,f_rising_flag,g_rising_flag,pre_key_f,mouse_Press_l_rising_flag,pre_mouse_l,r_rising_flag,pre_key_r,z_rising_flag,pre_key_z,Press_Key_z_Flag;
 short pre_key_q,pre_key_g,pre_v_rising_flag;	//上一v按键按下状态
 short v_high_flag;
 char q_flag,f_flag,HighFreq_flag;
@@ -194,13 +194,13 @@ void Remote_Process(Remote rc)
 //	}
 	
 //	
-//		if(rc.s2==1) //弹道测试模式
-//	{
-//		Status.GimbalMode=Gimbal_Act_Mode;
-//		Status.ChassisMode=Chassis_Powerdown_Mode;
-//		Status.ShootMode=Shoot_Check_Mode;
-//    SteeringEngine_Set(Infantry.MagOpen);
-//	}
+		if(rc.s2==1) //弹道测试模式
+	{
+		Status.GimbalMode=Gimbal_Act_Mode;
+		Status.ChassisMode=Chassis_Powerdown_Mode;
+		Status.ShootMode=Shoot_Check_Mode;
+    SteeringEngine_Set(Infantry.MagOpen);
+	}
 
 //			if(rc.s2==2) //底盘测试模式
 //	{
@@ -277,13 +277,13 @@ void Remote_Process(Remote rc)
 //		SteeringEngine_Set(Infantry.MagClose);
 //  }
 
-	if(rc.s2==1)  //系统辨识模式
-	{
-		Status.GimbalMode=Gimbal_SI_Mode;
-		Status.ChassisMode=Chassis_Act_Mode;
-		Status.ShootMode=Shoot_Powerdown_Mode;
-		SteeringEngine_Set(Infantry.MagClose);		
-	}
+//	if(rc.s2==1)  //系统辨识模式
+//	{
+//		Status.GimbalMode=Gimbal_SI_Mode;
+//		Status.ChassisMode=Chassis_Act_Mode;
+//		Status.ShootMode=Shoot_Powerdown_Mode;
+//		SteeringEngine_Set(Infantry.MagClose);		
+//	}
 }
 
 /**********************************************************************************************************
@@ -544,16 +544,16 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 		}
 
 		/******************************鼠标按键射击*******************************************/
-		mouse_Press_r_rising_flag=RC_Ctl.mouse.press_l-pre_mouse_l;
+		mouse_Press_l_rising_flag=RC_Ctl.mouse.press_l-pre_mouse_l;
 		pre_mouse_l=RC_Ctl.mouse.press_l;
 		if(Status.ShootMode==Shoot_Fire_Mode)
 	{
 		if(RC_Ctl.mouse.press_l==1&&ReverseRotation==0)
 		{
 			 waitFlag[5]++;  
-			 if((waitFlag[5]<20)&&(waitFlag[5]>0))//短按     //延时可以调一调
+			 if((waitFlag[5]<50)&&(waitFlag[5]>0))//短按     //延时可以调一调
 			 {	
-				 if	(mouse_Press_r_rising_flag==1)	
+				 if	(mouse_Press_l_rising_flag==1)	
 				 {
 						waitFlag[5]=0;
 						if(F105.IsShootAble==1)//Heat_Limit
@@ -566,7 +566,7 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 						}
 				 }			    	 
 			 }
-			 if(waitFlag[5]>60)			//长按
+			 if(waitFlag[5]>100)			//长按
 			 {
  
 						if(F105.IsShootAble==1)
@@ -581,8 +581,11 @@ void MouseKey_Act_Cal(RC_Ctl_t RC_Ctl)
 		else if(RC_Ctl.mouse.press_l==0&&ReverseRotation==0)			//不按
 		{
 			waitFlag[5]=0;
+		   if( ShootContinue==1 || ABS(Bodan_Pos-PidBodanMotorPos.SetPoint)<1000)
+		  {
+        PidBodanMotorPos.SetPoint=Bodan_Pos;
+		  }	
 			ShootContinue=0;
-			PidBodanMotorPos.SetPoint=Bodan_Pos;
 		}
 	}	
 		/******************************辅助射击控制（辅瞄） 右键*****************************************/

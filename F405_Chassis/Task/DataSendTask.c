@@ -128,17 +128,15 @@ void Can2Send1(void)
 *·µ »Ø Öµ: ÎÞ
 **********************************************************************************************************/
 
-void Can2Send2(void)
+void Can2Send2(uint8_t BuffState)
 {
 	  CanTxMsg tx_message;
     tx_message.IDE = CAN_ID_STD;    
     tx_message.RTR = CAN_RTR_DATA; 
-    tx_message.DLC = 0x08;    
+    tx_message.DLC = 0x01;    
     tx_message.StdId = 0x096;
 	  
-	  memcpy(&tx_message.Data[0],&JudgeReceive.bulletSpeed,4);	
-    memcpy(&tx_message.Data[4],&Judge_Lost,1);
-	  memcpy(&tx_message.Data[5],&JudgeReceive.RobotLevel,1);
+	  tx_message.Data[0] = BuffState&0x02; 
 	
 	  CAN_Transmit(CAN2,&tx_message);
 }

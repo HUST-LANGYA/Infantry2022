@@ -809,7 +809,7 @@ void Pid_ChassisPosition_Init(void)
 	/********************************************* 14 号车 ***********************************************************/	
 		pidChassisPosition.P = 5.0f;				//  位置环					3号车
 	  pidChassisPosition.I = 0.00f;					
-	  pidChassisPosition.D = 2.0f;				
+	  pidChassisPosition.D = 1.0f;				
 	  pidChassisPosition.IMax = 300.0f;
 	  pidChassisPosition.OutMax = 16000.0f;
 	  pidChassisPosition.DeadZone=0.0f;

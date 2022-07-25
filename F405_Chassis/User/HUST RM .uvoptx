@@ -230,6 +230,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>My_P_max</ItemText>
         </Ww>
+        <Ww>
+          <count>14</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>JudgeReceive.bulletFreq</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>

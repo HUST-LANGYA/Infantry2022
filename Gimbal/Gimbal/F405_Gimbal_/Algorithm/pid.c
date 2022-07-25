@@ -17,13 +17,10 @@
 float PID_Calc(Pid_Typedef *P)
 {
 		P->LastError = P->PreError;
-		if((ABS(P->PreError)< P->DeadZone ))   //死区控制
+		P->PreError = P->SetPoint - P->ActualValue;
+	  if((ABS(P->PreError)< P->DeadZone ))   //死区控制
 		{
 			P->PreError = 0.0f;			
-		}
-		else
-		{
-			P->PreError = P->SetPoint - P->ActualValue;
 		}
 		
 		      //微分先行

@@ -41,7 +41,7 @@ extern unsigned char PCbuffer[PC_RECVBUF_SIZE];
 unsigned char tempPC[PC_RECVBUF_SIZE];//这里要改为全局变量，不然crc不通过
 short crcNopass;
 short buffindex;
-
+uint8_t CoolBuffState;
 /**********************************************************************************************************
 *函 数 名: Can1Receive1
 *功能说明: 功率板和拨弹电机通信
@@ -60,6 +60,9 @@ void Can1Receive0(CanRxMsg rx_message1)
 				 memcpy(&F105.HeatCool17,&rx_message1.Data[6],1);
 		     Robot_Disconnect.F105_DisConect=0;
 		 break;		
+		case 0x096:
+		     memcpy(&CoolBuffState,&rx_message1.Data[0], 1); 
+		break;		
 	}
 }
 

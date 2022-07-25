@@ -327,9 +327,8 @@ void Chassis_Speed_Cal(void)
 			
 		{
 //        变速小陀螺
-//				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*Self_Protect_Limit;
-//				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
-			carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*Self_Protect_Limit, -rotation_lim*Self_Protect_Limit);
+				rand_w = (RandThreshold+(1-RandThreshold)*rand_A)*Self_Protect_Limit;
+				carSpeedw = LIMIT_MAX_MIN(chassis.carSpeedw, rotation_lim*(rand_w), -rotation_lim*(rand_w));
 		}
 				}
 			}
@@ -718,7 +717,9 @@ void Chassis_Power_Control_Init(void)
 	Power_method[num].k_BAT = 2.0f;
 //	Power_method[num].CurrentMax = 16000;
 
-#elif Robot_ID == 14
+
+
+#elif Robot_ID == 14 || Robot_ID == 4
 ///****************************************  自适应4号车   ************************************************************/
 
 	/****************默认参数********************/       //14号车

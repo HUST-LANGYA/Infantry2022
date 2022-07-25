@@ -37,8 +37,11 @@ extern BodanMotorReceive_Typedef BodanReceive;
 extern short armor_state;
 extern RobotInit_Struct Infantry;
 extern short FrictionReceive[2];
+extern uint8_t CoolBuffState;
+
 short PullerSpeed ;        //  1000 冷却1级射频4.5     2000 2级6.5  3000 12.5
 short checkPullerSpeed;             //  800  4
+
 /**********************************************************************************************************
 *函 数 名: PluckSpeedChoose
 *功能说明: 拨盘拨速选择
@@ -50,119 +53,53 @@ void Pluck_Speed_Choose()
 {
 	if(HighFreq_flag)
 	{
-		PullerSpeed = 3200;
+		PullerSpeed = 4500;
 	}
 	else
 	{
-	  PullerSpeed = 2500;
-	}
-//	switch(F105.RobotLevel)
-//	{	
-//       /***** 1级 ******/
-//		case 1:
-//		if(F105.BulletSpeedLevel != 2)
-//		{
-//				if(F105.HeatCool17 == 15 ||F105.HeatCool17 == 45||F105.HeatCool17 == 75) // 1级爆发优先
-//			{
-//				PullerSpeed = 2500;
-//			}
-//				else if(F105.HeatCool17 == 40 ) 			// 1级冷却优先
-//			{
-//				PullerSpeed = 2000;
-//			}
-//				else if(F105.HeatCool17 == 120)           // 1级冷却，3倍增益
-//			{
-//				PullerSpeed = 3500;
-//			}
-//				else if(F105.HeatCool17 == 200)       // 1级冷却，5倍增益     1000 ~ 4发
-//			{
-//				PullerSpeed = 3500;
-//			}
-//				else    //错帧
-//			{
-//				PullerSpeed = 2000;
-//			}
-//		}
-//		else
-//		{
-//		PullerSpeed = 1000;
-//		}
-//		break;
-//		
-//		 /****** 2级 *****/
-//		case 2:
-//		if(F105.BulletSpeedLevel != 2)
-//		{
-//				if(F105.HeatCool17 == 25 || F105.HeatCool17 == 75 || F105.HeatCool17 == 125) // 2级爆发优先
-//			{
-//				PullerSpeed = 3000;
-//			}
-//				else if(F105.HeatCool17 == 60 ) 			// 2级冷却优先
-//			{
-//				PullerSpeed = 3000;
-//			}
-//				else if(F105.HeatCool17 == 180)           // 2级冷却，3倍增益
-//			{
-//				PullerSpeed = 3500;
-//			}
-//				else if(F105.HeatCool17 == 300)       // 2级冷却，5倍增益     1000 ~ 4发
-//			{
-//				PullerSpeed = 3500;
-//			}
-//				else    //错帧
-//			{
-//				PullerSpeed = 3000;
-//			}
-//		}
-//		else
-//		{
-//		PullerSpeed = 1800;
-//		}
-//		break;
-//		
-//    /******  3级 ******/		
-//		case 3:
-//	if(F105.BulletSpeedLevel != 2)
-//		{
-//				if(F105.HeatCool17 == 35 || F105.HeatCool17 == 105 || F105.HeatCool17 == 175) // 2级爆发优先
-//			{
-//				PullerSpeed = 3500;
-//			}
-//				else if(F105.HeatCool17 == 80 ) 			// 3级冷却优先
-//			{
-//				PullerSpeed = 3500;
-//			}
-//				else if(F105.HeatCool17 == 240)           // 2级冷却，3倍增益
-//			{
-//				PullerSpeed = 4000;
-//			}
-//				else if(F105.HeatCool17 == 400)       // 2级冷却，5倍增益     1000 ~ 4发
-//			{
-//				PullerSpeed = 4000;
-//			}
-//				else    //错帧
-//			{
-//				PullerSpeed = 3000;
-//			}
-//		}
-//		else
-//		{
-//		PullerSpeed = 2700;
-//		}
-//		break;
-//		
-//		
-//		default:
-//		if(F105.BulletSpeedLevel==2)
-//		{
-//		PullerSpeed = 1000;
-//		}
-//		else
-//		{
-//		PullerSpeed = 2000;
-//		}
-//			
-//	}
+  	switch(F105.RobotLevel)
+  {	
+       /***** 1级 ******/
+		case 1:
+			if(!CoolBuffState)
+			{
+     	 PullerSpeed = 3000;    //无增益
+			}
+			else
+			{
+			 PullerSpeed = 4000;    //有增益 
+			}
+		break;
+		
+		 /****** 2级 *****/
+		case 2:
+		if(!CoolBuffState)
+		{
+     	 PullerSpeed = 3500;    //无增益
+		}
+		else
+		{
+			 PullerSpeed = 4000;    //有增益 
+		}
+		break;
+		
+    /******  3级 ******/		
+		case 3:
+			if(!CoolBuffState)
+		{
+     	 PullerSpeed = 4000;    //无增益
+		}
+		else
+		{
+			 PullerSpeed = 4500;    //有增益 
+		}
+		break;
+		
+		
+		default:
+		PullerSpeed = 3500;
+	 }	
+  }
 }
 /**********************************************************************************************************
 *函 数 名: FrictionSpeedChoose
@@ -544,18 +481,18 @@ if(Status.ShootMode==Shoot_Powerdown_Mode)
 void Pid_BodanMotor_Init(void)
 {
 	
-	PidBodanMotorPos.P=0.15f;
+	PidBodanMotorPos.P=0.6f;
 	PidBodanMotorPos.I=0.0f;
-	PidBodanMotorPos.D=0.0f;
+	PidBodanMotorPos.D=0.2f;
 	PidBodanMotorPos.IMax=1500.0f;
 	PidBodanMotorPos.SetPoint=0.0f;
-	PidBodanMotorPos.OutMax=6000.0f;
+	PidBodanMotorPos.OutMax=20000.0f;
 	PidBodanMotorPos.RC_DF = 0.5F;
-	PidBodanMotorPos.I_L = 6000;
+	PidBodanMotorPos.I_L = 8000;
 	PidBodanMotorPos.I_U = 12000;
 	
 
-	PidBodanMotorSpeed.P=15.0f;  //5.0f
+	PidBodanMotorSpeed.P=20.0f;  //5.0f
 	PidBodanMotorSpeed.I=0.5f;//0.01f;
 	PidBodanMotorSpeed.D=0.0f;
 	PidBodanMotorSpeed.DeadZone=50.0f;
@@ -568,7 +505,7 @@ void Pid_BodanMotor_Init(void)
 	
 #if(Robot_ID == 3 || Robot_ID == 4 || Robot_ID == 14)
 
-    Onegrid=42940.0f;		  //老拨盘
+    Onegrid=36400.0f;		  //老拨盘
 	  checkPullerSpeed = 1000;
 	
 #else
